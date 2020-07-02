@@ -1,6 +1,5 @@
-# Boilerplate Card by [@iantrich](https://www.github.com/iantrich)
+# Vertical Slider Cover Card by konnected.vn (https://konnected.vn - VI)
 
-A community driven boilerplate of best practices for Home Assistant Lovelace custom cards
 
 [![GitHub Release][releases-shield]][releases]
 [![License][license-shield]](LICENSE.md)
@@ -9,56 +8,44 @@ A community driven boilerplate of best practices for Home Assistant Lovelace cus
 ![Project Maintenance][maintenance-shield]
 [![GitHub Activity][commits-shield]][commits]
 
-[![Discord][discord-shield]][discord]
-[![Community Forum][forum-shield]][forum]
-
 ## Support
 
 Hey dude! Help me out for a couple of :beers: or a :coffee:!
 
-[![coffee](https://www.buymeacoffee.com/assets/img/custom_images/black_img.png)](https://www.buymeacoffee.com/zJtVxUAgH)
+[![coffee](https://www.buymeacoffee.com/assets/img/custom_images/black_img.png)](https://www.buymeacoffee.com/wolverinevn)
 
 ## Options
 
-| Name              | Type    | Requirement  | Description                                 | Default             |
-| ----------------- | ------- | ------------ | ------------------------------------------- | ------------------- |
-| type              | string  | **Required** | `custom:boilerplate-card`                   |
-| name              | string  | **Optional** | Card name                                   | `Boilerplate`       |
-| show_error        | boolean | **Optional** | Show what an error looks like for the card  | `false`             |
-| show_warning      | boolean | **Optional** | Show what a warning looks like for the card | `false`             |
-| entity            | string  | **Optional** | Home Assistant entity ID.                   | `none`              |
-| tap_action        | object  | **Optional** | Action to take on tap                       | `action: more-info` |
-| hold_action       | object  | **Optional** | Action to take on hold                      | `none`              |
-| double_tap_action | object  | **Optional** | Action to take on hold                      | `none`              |
+| Name              | Type    | Requirement  | Description                                 | Default                  |
+| ----------------- | ------- | ------------ | ------------------------------------------- | ------------------------ |
+| type              | string  | **Required** | `custom:vertical-slider-cover-card`         |                          |
+| title             | string  | **Optional** | Card name                                   | `VerticalSliderCoverCard`|
+| entities          | list    | **Required** | Cover entities to show as slider in card    |                          |
+| icon              | string  | **Optional** | Icon to show on side bar                    | ``                       |
+| positionHeight    | string  | **Optional** | Height of each slider in px                 | `300px`                  |
+| positionWidth     | string  | **Optional** | Width of each slider in px                  | `100px`                  |
+| switchHeight      | string  | **Optional** | Height of Stop button at bottom             | `100px`                  |
+| switchWidth       | string  | **Optional** | Width of Stop button at bottom              | `100px`                  |
+| showButton        | string  | **Optional** | Show Home button at bottom of side bar      | `hide`                   |
+| buttonPath        | string  | **Optional** | Path of Lovelace View when click button     | `/lovelace/0`            |
+| buttonText        | string  | **Optional** | Text to show on button                      | `Home`                   |
+| countText         | string  | **Optional** | Text to show follow number of covers open   | `covers open`            |
+| countText         | string  | **Optional** | Text to show follow number of covers open   | `covers open`            |
 
-## Action Options
+## Starting a new card from vertical-silder-cover-card
 
-| Name            | Type   | Requirement  | Description                                                                                                                            | Default     |
-| --------------- | ------ | ------------ | -------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| action          | string | **Required** | Action to perform (more-info, toggle, call-service, navigate url, none)                                                                | `more-info` |
-| navigation_path | string | **Optional** | Path to navigate to (e.g. /lovelace/0/) when action defined as navigate                                                                | `none`      |
-| url             | string | **Optional** | URL to open on click when action is url. The URL will open in a new tab                                                                | `none`      |
-| service         | string | **Optional** | Service to call (e.g. media_player.media_play_pause) when action defined as call-service                                               | `none`      |
-| service_data    | object | **Optional** | Service data to include (e.g. entity_id: media_player.bedroom) when action defined as call-service                                     | `none`      |
-| haptic          | string | **Optional** | Haptic feedback for the [Beta IOS App](http://home-assistant.io/ios/beta) _success, warning, failure, light, medium, heavy, selection_ | `none`      |
-| repeat          | number | **Optional** | How often to repeat the `hold_action` in milliseconds.                                                                                 | `non`       |
+### INSTALL USING HACS
 
-## Starting a new card from boilerplate-card
+Add this repo to HACS custom repositories
 
-### Step 1
+### MANUAL INSTALL
 
-Clone this repository
+Download vertical-slider-cover-card.js and add it to your /config/wwww/vertical-slider-cover-card/
+Then in Home Assistant Dasboard Resource, add resource path /local/vertical-slider-cover-card/vertical-slider-cover-card.js, type: module
 
-### Step 2
+### Add new card
 
-Install necessary modules (verified to work in node 8.x)
-`yarn install` or `npm install`
-
-
-### Step 3
-
-Do a test lint & build on the project. You can see available scripts in the package.json
-`npm run build`
+In Lovelace, add new Manual card. Copy sample config to replace new card content, adjust entities to fix your Hasss.
 
 ### Step 4
 
