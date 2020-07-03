@@ -11,11 +11,11 @@
 
 Panel View screenshot
 
-![panel card screenshot](src/konnected_vn_Vertical-Slider-Cover-Card-Panel-Mode-7-2-2020.png "Desktop screenshot")
+![panel card screenshot](https://github.com/konnectedvn/lovelace-vertical-slider-cover-card/blob/master/src/konnected_vn_Vertical-Slider-Cover-Card-Panel-Mode-7-2-2020.png?raw=true "Desktop screenshot")
 
 Card screenshot
 
-![card screenshot](src/konnected_vn_Vertical-Slider-Cover-Card-Normal-Mode-7-2-2020.png "Desktop screenshot")
+![card screenshot](https://github.com/konnectedvn/lovelace-vertical-slider-cover-card/blob/master/src/konnected_vn_Vertical-Slider-Cover-Card-Normal-Mode-7-2-2020.png?raw=true "Desktop screenshot")
 
 # Options
 
