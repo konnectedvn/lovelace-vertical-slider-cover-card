@@ -123,4 +123,5 @@ Hey dude! Help me out for a couple of :beers: or a :coffee: (:coffee: is preferr
 [site]: https://konnected.vn/home-assistant
 [license-shield]: https://img.shields.io/github/license/custom-cards/boilerplate-card.svg?style=for-the-badge
 [maintenance-shield]: https://img.shields.io/maintenance/yes/2020.svg?style=for-the-badge
+[releases-shield]: https://img.shields.io/badge/dynamic/json?color=red&label=Release&query=version&url=https%3A%2F%2Fraw.githubusercontent.com%2Fkonnectedvn%2Flovelace-vertical-slider-cover-card%2Fv0.0.1%2Fpackage.json
 [releases]: https://github.com/konnectedvn/lovelace-vertical-slider-cover-card/releases
