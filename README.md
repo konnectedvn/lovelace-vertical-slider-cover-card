@@ -82,10 +82,10 @@ switchHeight: 80px
 switchWidth: 100px
 title: Covers
 entities:
-  - entity: cover.office_left_blind
-    name: Left Blind
-  - entity: cover.office_right_blind
-    name: Right Blind
+  - entity: cover.office_left_blinds
+    name: Left Blinds
+  - entity: cover.office_right_blinds
+    name: Right Blinds
   - entity: cover.basement_shutter
     name: Basement Shutter
 ```
