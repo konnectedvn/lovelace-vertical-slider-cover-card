@@ -121,7 +121,7 @@ Hey dude! Help me out for a couple of :beers: or a :coffee: (:coffee: is preferr
 [devcontainer]: https://code.visualstudio.com/docs/remote/containers
 [twitter]: https://twitter.com/KonnectedVN
 [site]: https://konnected.vn/home-assistant
-[license-shield]: https://img.shields.io/github/license/custom-cards/boilerplate-card.svg?style=for-the-badge
+[license-shield]: https://img.shields.io/github/license/konnectedvn/lovelace-vertical-slider-cover-card.svg?style=for-the-badge&color=red
 [maintenance-shield]: https://img.shields.io/maintenance/yes/2020.svg?style=for-the-badge
 [releases-shield]: https://img.shields.io/github/release/konnectedvn/lovelace-vertical-slider-cover-card.svg?style=for-the-badge&color=red
 [releases]: https://github.com/konnectedvn/lovelace-vertical-slider-cover-card/releases
