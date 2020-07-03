@@ -84,9 +84,9 @@ class VerticalSliderCoverCard extends LitElement {
                       <div class="cover-slider">
                         <h3>${ent.name || stateObj.attributes.friendly_name}</h3>
                         ${stateObj.attributes.supported_features > 9 ? html`
-                            <h4 class="position">${stateObj.state === "closed" ? 100 : Math.round(stateObj.attributes.current_position)}</h4>
+                            <h4 class="position">${stateObj.state === "closed" ? 0 : Math.round(100 - stateObj.attributes.current_position)}</h4>
                             <div class="range-holder" style="--slider-height: ${positionHeight};">
-                              <input type="range" class="${stateObj.state}" style="--slider-width: ${positionWidth};--slider-height: ${positionHeight};" .value="${stateObj.state === "closed" ? 100 : Math.round(stateObj.attributes.current_position)}" @change=${e => this._setPosition(stateObj, 100 - e.target.value)}>
+                              <input type="range" class="${stateObj.state}" style="--slider-width: ${positionWidth};--slider-height: ${positionHeight};" .value="${stateObj.state === "closed" ? 0 : Math.round(100 - stateObj.attributes.current_position)}" @change=${e => this._setPosition(stateObj, 100 - e.target.value)}>
                             </div>
                         ` : html`
                             <h4>${stateObj.state}</h4>
@@ -322,15 +322,15 @@ class VerticalSliderCoverCard extends LitElement {
           width: var(--slider-height);
           margin: 0;
           transition: box-shadow 0.2s ease-in-out;
-          -webkit-transform:rotate(90deg);
-          -moz-transform:rotate(90deg);
-          -o-transform:rotate(90deg);
-          -ms-transform:rotate(90deg);
-          transform:rotate(90deg);
+          -webkit-transform:rotate(270deg);
+          -moz-transform:rotate(270deg);
+          -o-transform:rotate(270deg);
+          -ms-transform:rotate(270deg);
+          transform:rotate(270deg);
           overflow: hidden;
           height: var(--slider-width);
           -webkit-appearance: none;
-          background-color: hsl(0, 0%, 80%, 0.8);
+          background-color: hsl(0, 0%, 20%);
           position: absolute;
           top: calc(50% - (var(--slider-width) / 2));
           right: calc(50% - (var(--slider-height) / 2));
@@ -338,7 +338,7 @@ class VerticalSliderCoverCard extends LitElement {
         .range-holder input[type="range"]::-webkit-slider-runnable-track {
           height: var(--slider-width);
           -webkit-appearance: none;
-          color: hsl(0, 0%, 90%);
+          color: hsl(0, 0%, 90%, 0.6);
           margin-top: -1px;
           transition: box-shadow 0.2s ease-in-out;
         }
@@ -351,7 +351,7 @@ class VerticalSliderCoverCard extends LitElement {
           -webkit-appearance: none;
           height: 80px;
           cursor: ew-resize;
-          background: hsl(0, 0%, 90%);
+          background: hsl(0, 0%, 90%, 0.6);
           box-shadow: -350px 0 0 350px #636363, inset 0 0 0 80px #969696;
           border-radius: 0;
           transition: box-shadow 0.2s ease-in-out;
