@@ -40,7 +40,10 @@ Card screenshot
 ### INSTALL USING HACS (recommended)
 
 Add this repo to HACS custom repositories.
-repo: https://github.com/konnectedvn/lovelace-vertical-slider-cover-card
+
+**repo**: https://github.com/konnectedvn/lovelace-vertical-slider-cover-card
+
+*Category*: Lovelace
 
 Hướng dẫn cài đặt và sử dụng HACS trong Home Assistant có thể xem ở đây (VI - HACS Guide):
 https://konnected.vn/home-assistant/home-assistant-cai-dat-hacs-va-theme-2020-03-27
