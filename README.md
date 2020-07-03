@@ -116,12 +116,11 @@ Hey dude! Help me out for a couple of :beers: or a :coffee: (:coffee: is preferr
 [![coffee](https://www.buymeacoffee.com/assets/img/custom_images/black_img.png)](https://www.buymeacoffee.com/wolverinevn)
 
 [maintenance-shield]: https://img.shields.io/maintenance/yes/2020.svg?style=for-the-badge
-[commits-shield]: https://img.shields.io/github/commit-activity/y/custom-cards/boilerplate-card.svg?style=for-the-badge
-[commits]: https://github.com/custom-cards/boilerplate-card/commits/master
-[devcontainer]: https://code.visualstudio.com/docs/remote/containers
+[commits-shield]: https://img.shields.io/github/commit-activity/y/konnectedvn/lovelace-vertical-slider-cover-card/lovelace-vertical-slider-cover-card.svg?style=for-the-badge
+[commits]: https://github.com/konnectedvn/lovelace-vertical-slider-cover-card/commits/master
 [twitter]: https://twitter.com/KonnectedVN
 [site]: https://konnected.vn/home-assistant
 [license-shield]: https://img.shields.io/github/license/konnectedvn/lovelace-vertical-slider-cover-card.svg?style=for-the-badge&color=red
 [maintenance-shield]: https://img.shields.io/maintenance/yes/2020.svg?style=for-the-badge
-[releases-shield]: https://img.shields.io/github/release/konnectedvn/lovelace-vertical-slider-cover-card.svg?style=for-the-badge&color=red
+[releases-shield]: https://img.shields.io/github/v/release/konnectedvn/lovelace-vertical-slider-cover-card.svg?style=for-the-badge&color=red
 [releases]: https://github.com/konnectedvn/lovelace-vertical-slider-cover-card/releases
