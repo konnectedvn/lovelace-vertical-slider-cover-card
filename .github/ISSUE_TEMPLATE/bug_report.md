@@ -21,6 +21,8 @@ assignees: ''
 
 **Last working release (if known):**
 
+**Home Assistant version:**
+
 **Browser and Operating System:**
 
 <!--
