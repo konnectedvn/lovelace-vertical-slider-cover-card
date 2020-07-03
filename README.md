@@ -8,18 +8,16 @@
 ![Project Maintenance][maintenance-shield]
 [![GitHub Activity][commits-shield]][commits]
 
-## Support
+## Many Thanks to DBuit!
 
-Hey dude! Help me out for a couple of :beers: or a :coffee:!
-
-[![coffee](https://www.buymeacoffee.com/assets/img/custom_images/black_img.png)](https://www.buymeacoffee.com/wolverinevn)
+This card is based on his lights-card at: https://github.com/DBuit/hass-smart-home-panel-card.
 
 ## Options
 
 | Name              | Type    | Requirement  | Description                                 | Default                  |
 | ----------------- | ------- | ------------ | ------------------------------------------- | ------------------------ |
 | type              | string  | **Required** | `custom:vertical-slider-cover-card`         |                          |
-| title             | string  | **Optional** | Card name                                   | `VerticalSliderCoverCard`|
+| title             | string  | **Required** | Card name                                   | `VerticalSliderCoverCard`|
 | entities          | list    | **Required** | Cover entities to show as slider in card    |                          |
 | icon              | string  | **Optional** | Icon to show on side bar                    | ``                       |
 | positionHeight    | string  | **Optional** | Height of each slider in px                 | `300px`                  |
@@ -30,77 +28,79 @@ Hey dude! Help me out for a couple of :beers: or a :coffee:!
 | buttonPath        | string  | **Optional** | Path of Lovelace View when click button     | `/lovelace/0`            |
 | buttonText        | string  | **Optional** | Text to show on button                      | `Home`                   |
 | countText         | string  | **Optional** | Text to show follow number of covers open   | `covers open`            |
-| countText         | string  | **Optional** | Text to show follow number of covers open   | `covers open`            |
+| background        | string  | **Optional** | Background in hex (# or hsl with opacity)   | `transparent`            |
 
 ## Starting a new card from vertical-silder-cover-card
 
-### INSTALL USING HACS
+### INSTALL USING HACS (recommended)
 
-Add this repo to HACS custom repositories
+Add this repo to HACS custom repositories.
+Hướng dẫn cài đặt và sử dụng HACS trong Home Assistant ở đây:
+https://konnected.vn/home-assistant/home-assistant-cai-dat-hacs-va-theme-2020-03-27
 
 ### MANUAL INSTALL
 
-Download vertical-slider-cover-card.js and add it to your /config/wwww/vertical-slider-cover-card/
-Then in Home Assistant Dasboard Resource, add resource path /local/vertical-slider-cover-card/vertical-slider-cover-card.js, type: module
+Download vertical-slider-cover-card.js and add it to your /config/wwww/vertical-slider-cover-card (make new dir if it's not exist).
+In Home Assistant Dashboard **Resource**, add resource path /local/vertical-slider-cover-card/vertical-slider-cover-card.js, type: module.
 
-### Add new card
-
-In Lovelace, add new Manual card. Copy sample config to replace new card content, adjust entities to fix your Hasss.
-
-### Step 4
-
-Search the repository for all instances of "TODO" and handle the changes/suggestions
-
-### Step 5
-
-Customize to suit your needs and contribute it back to the community
-
-
-## Starting a new card from boilerplate-card with [devcontainer][devcontainer]
-
-Note: this is available only in vscode ensure you have the [Remote Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension installed.
-
-1. Fork and clone the repository.
-2. Open a [devcontainer][devcontainer] terminal and run `npm start` when it's ready.
-3. The compiled `.js` file will be accessible on
-   `http://127.0.0.1:5000/boilerplate-card.js`.
-4. On a running Home Assistant installation add this to your Lovelace
-   `resources:`
-
+`resources`:
 ```yaml
-- url: "http://127.0.0.1:5000/boilerplate-card.js"
+- url: /local/vertical-slider-cover-card/vertical-slider-cover-card.js
   type: module
 ```
 
-_Change "127.0.0.1" to the IP of your development machine._
+### Add new card
 
-### Bonus
-
-If you need a fresh test instance you can install a fresh Home Assistant instance inside the devcontainer as well.
-
-1. Run the command `dc start`.
-2. Home Assistant will install and will eventually be running on port `9123`
-
-## [Troubleshooting](https://github.com/thomasloven/hass-config/wiki/Lovelace-Plugins)
-NB This will not work with node 9.x if you see the following errors try installing node 8.10.0
-```yarn install
-yarn install v1.3.2
-[1/4] 🔍  Resolving packages...
-warning rollup-plugin-commonjs@10.1.0: This package has been deprecated and is no longer maintained. Please use @rollup/plugin-commonjs.
-[2/4] 🚚  Fetching packages...
-error @typescript-eslint/eslint-plugin@2.6.0: The engine "node" is incompatible with this module. Expected version "^8.10.0 || ^10.13.0 || >=11.10.1".
-error Found incompatible module
-info Visit https://yarnpkg.com/en/docs/cli/install for documentation about this command.
+In Lovelace, add new Manual card. Copy sample configuration to replace new card content, adjust entities to fix your Hasss.
+In View option, check Panel mode if needed.
+#example configuration
 ```
+type: 'custom:vertical-slider-cover-card'
+background: 'rgb(0, 0, 0, 0.4)'
+buttonPath: /lovelace/0
+buttonText: Home
+countText: 'covers open'
+icon: 'mdi:blinds'
+panelType: true
+positionHeight: 300px
+positionWidth: 100px
+showButton: show
+switchHeight: 80px
+switchWidth: 100px
+title: Covers
+entities:
+  - entity: cover.office_left_blind
+    name: Left Blind
+  - entity: cover.office_right_blind
+    name: Right Blind
+  - entity: cover.basement_shutter
+    name: Basement Shutter
+```
+### LAST STEP
 
-[commits-shield]: https://img.shields.io/github/commit-activity/y/custom-cards/boilerplate-card.svg?style=for-the-badge
-[commits]: https://github.com/custom-cards/boilerplate-card/commits/master
-[devcontainer]: https://code.visualstudio.com/docs/remote/containers
-[discord]: https://discord.gg/5e9yvq
-[discord-shield]: https://img.shields.io/discord/330944238910963714.svg?style=for-the-badge
-[forum-shield]: https://img.shields.io/badge/community-forum-brightgreen.svg?style=for-the-badge
-[forum]: https://community.home-assistant.io/c/projects/frontend
+Style it using card-mod?
+
+## ISSUE AND SUGGESTION?
+
+Customize to suit your needs and contribute it back to the community.
+Found issue? Please raise an issue in this repository or send me email to <duytruong@konnected.vn>
+And suggestion and comment are warmly welcome and appreciated!
+
+## MORE WORKS TO DO
+
+Remove hard-coded style
+Support input_number and lights entities in Home Assistant
+
+
+## Support (just for fun!)
+
+Hey dude! Help me out for a couple of :beers: or a :coffee: (:coffee: is preferred, have enough beers this year)!
+
+[![coffee](https://www.buymeacoffee.com/assets/img/custom_images/black_img.png)](https://www.buymeacoffee.com/wolverinevn)
+
+[twitter]: https://twitter.com/KonnectedVN
+[site]: https://konnected.vn/home-assistant
 [license-shield]: https://img.shields.io/github/license/custom-cards/boilerplate-card.svg?style=for-the-badge
 [maintenance-shield]: https://img.shields.io/maintenance/yes/2019.svg?style=for-the-badge
 [releases-shield]: https://img.shields.io/github/release/custom-cards/boilerplate-card.svg?style=for-the-badge
-[releases]: https://github.com/custom-cards/boilerplate-card/releases
+[releases]: https://github.com/konnectedvn/lovelace-vertical-slider-cover-card/releases
