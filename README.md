@@ -8,11 +8,15 @@
 ![Project Maintenance][maintenance-shield]
 [![GitHub Activity][commits-shield]][commits]
 
-## Many Thanks to DBuit!
+## SCREENTSHOT
 
-This card is based on his lights-card at: https://github.com/DBuit/hass-smart-home-panel-card.
+Panel View screenshot
+![panel card screenshot](src/konnected_vn_Vertical-Slider-Cover-Card-Panel-Mode-7-2-2020.png "Desktop screenshot")
 
-## Options
+Card screenshot
+![card screenshot](src/konnected_vn_Vertical-Slider-Cover-Card-Normal-Mode-7-2-2020.png "Desktop screenshot")
+
+# Options
 
 | Name              | Type    | Requirement  | Description                                 | Default                  |
 | ----------------- | ------- | ------------ | ------------------------------------------- | ------------------------ |
@@ -30,7 +34,7 @@ This card is based on his lights-card at: https://github.com/DBuit/hass-smart-ho
 | countText         | string  | **Optional** | Text to show follow number of covers open   | `covers open`            |
 | background        | string  | **Optional** | Background in hex (# or hsl with opacity)   | `transparent`            |
 
-## Starting a new card from vertical-silder-cover-card
+## STARTING A NEW CARD FROM vertical-silder-cover-card
 
 ### INSTALL USING HACS (recommended)
 
@@ -49,7 +53,7 @@ In Home Assistant Dashboard **Resource**, add resource path /local/vertical-slid
   type: module
 ```
 
-### Add new card
+### ADD NEW CARD
 
 In Lovelace, add new Manual card. Copy sample configuration to replace new card content, adjust entities to fix your Hasss.
 In View option, check Panel mode if needed.
@@ -91,6 +95,9 @@ And suggestion and comment are warmly welcome and appreciated!
 Remove hard-coded style
 Support input_number and lights entities in Home Assistant
 
+### Many Thanks to DBuit!
+
+This card is based on his lights-card at: https://github.com/DBuit/hass-smart-home-panel-card.
 
 ## Support (just for fun!)
 
@@ -98,6 +105,10 @@ Hey dude! Help me out for a couple of :beers: or a :coffee: (:coffee: is preferr
 
 [![coffee](https://www.buymeacoffee.com/assets/img/custom_images/black_img.png)](https://www.buymeacoffee.com/wolverinevn)
 
+[maintenance-shield]: https://img.shields.io/maintenance/yes/2020.svg?style=for-the-badge
+[commits-shield]: https://img.shields.io/github/commit-activity/y/custom-cards/boilerplate-card.svg?style=for-the-badge
+[commits]: https://github.com/custom-cards/boilerplate-card/commits/master
+[devcontainer]: https://code.visualstudio.com/docs/remote/containers
 [twitter]: https://twitter.com/KonnectedVN
 [site]: https://konnected.vn/home-assistant
 [license-shield]: https://img.shields.io/github/license/custom-cards/boilerplate-card.svg?style=for-the-badge
