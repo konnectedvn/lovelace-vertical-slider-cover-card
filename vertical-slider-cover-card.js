@@ -86,7 +86,7 @@ class VerticalSliderCoverCard extends LitElement {
                         ${stateObj.attributes.supported_features > 9 ? html`
                             <h4 class="position">${stateObj.state === "closed" ? 0 : Math.round(stateObj.attributes.current_position)}</h4>
                             <div class="range-holder" style="--slider-height: ${positionHeight};">
-                              <input type="range" class="${stateObj.state}" style="--slider-width: ${positionWidth};--slider-height: ${positionHeight};" .value="${stateObj.state === "closed" ? 0 : Math.round(100 - stateObj.attributes.current_position)}" @change=${e => this._setPosition(stateObj, e.target.value)}>
+                              <input type="range" class="${stateObj.state}" style="--slider-width: ${positionWidth};--slider-height: ${positionHeight};" .value="${stateObj.state === "closed" ? 0 : Math.round(stateObj.attributes.current_position)}" @change=${e => this._setPosition(stateObj, e.target.value)}>
                             </div>
                         ` : html`
                             <h4>${stateObj.state}</h4>
