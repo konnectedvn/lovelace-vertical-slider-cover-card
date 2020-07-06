@@ -50,7 +50,7 @@ https://konnected.vn/home-assistant/home-assistant-cai-dat-hacs-va-theme-2020-03
 
 ### MANUAL INSTALL
 
-Download vertical-slider-cover-card.js and add it to your /config/wwww/vertical-slider-cover-card (make new dir if it's not exist).
+Download vertical-slider-cover-card.js and add it to your /config/wwww/vertical-slider-cover-card (make new dir if it does not exist).
 
 In Home Assistant Dashboard **Resource**, add resource path /local/vertical-slider-cover-card/vertical-slider-cover-card.js, type: module.
 
@@ -62,9 +62,9 @@ In Home Assistant Dashboard **Resource**, add resource path /local/vertical-slid
 
 ### ADD NEW CARD
 
-In Lovelace, add new Manual card. Copy sample configuration to replace new card content, adjust entities to fix your Hasss.
+In Lovelace, add new Manual card. Copy sample configuration to replace new card content, adjust entities to fix your Hass.
 
-In View option, check Panel mode if needed.
+In View option, check Panel mode if you want do display card in full width.
 
 #example configuration
 ```
