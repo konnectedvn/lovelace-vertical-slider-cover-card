@@ -17,6 +17,17 @@ Card screenshot
 
 ![card screenshot](https://github.com/konnectedvn/lovelace-vertical-slider-cover-card/blob/master/src/konnected_vn_Vertical-Slider-Cover-Card-Normal-Mode-7-2-2020.png?raw=true "Desktop screenshot")
 
+
+Color Guideline
+
+![card screenshot](https://github.com/konnectedvn/lovelace-vertical-slider-cover-card/blob/master/src/konnected_vn_vertical-slider-cover-card-color-guideline.png?raw=true "Desktop screenshot")
+
+
+Color Picker Helper
+
+![card screenshot](https://github.com/konnectedvn/lovelace-vertical-slider-cover-card/blob/master/src/konnected_vn_color_picker.png?raw=true "Desktop screenshot")
+
+
 # Options
 
 | Name              | Type    | Requirement  | Description                                 | Default                  |
@@ -34,6 +45,10 @@ Card screenshot
 | buttonText        | string  | **Optional** | Text to show on button                      | `Home`                   |
 | countText         | string  | **Optional** | Text to show follow number of covers open   | `covers open`            |
 | background        | string  | **Optional** | Background in hex (# or hsl with opacity)   | `transparent`            |
+| sideColor1        | string  | **Optional** | Upper-left color of sidebar (~)             | `#b30000`                |
+| sideColor2        | string  | **Optional** | Lower-right color of sidebar (~)            | `#ffcccc`                |
+| openColor         | string  | **Optional** | Color of lower slider bar (~)               | `hsl(0, 0%, 90%, 0.8)`   |
+| closedColor       | string  | **Optional** | Color of upper slider bar (~)               | `hsl(0, 0%, 20%)`        |
 
 ## STARTING A NEW CARD FROM vertical-silder-cover-card
 
@@ -80,6 +95,10 @@ positionWidth: 100px
 showButton: show
 switchHeight: 80px
 switchWidth: 100px
+sideColor1: '#b30000'
+sideColor2: '#ffcccc'
+openColor: 'hsl(0, 0%, 20%, 0.8)'
+closedColor: 'hsl(0, 0%, 90%)'
 title: Covers
 entities:
   - entity: cover.office_left_blinds
