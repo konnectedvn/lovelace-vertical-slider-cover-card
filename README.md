@@ -43,7 +43,7 @@ Color Picker Helper
 | switchWidth       | string  | **Optional** | Width of Stop button at bottom              | `100px`                  |
 | panelType         | boolean | **Optional** | Try to center all sliders (gapWidth ignored)| `true`                   |
 | showSidebar       | boolean | **Optional** | Show or hide side bar (1)                   | `true`                   |
-| gapWidth          | string  | **Optional** | Width of Space between 2 cover slider       | `50px`                   |
+| gapWidth          | string  | **Optional** | Width of Space between 2 cover sliders      | `50px`                   |
 | showButton        | string  | **Optional** | Show Home button at bottom of side bar      | `hide`                   |
 | buttonText        | string  | **Optional** | Text to show on button                      | `Home`                   |
 | buttonPath        | string  | **Optional** | Path of Lovelace View when click button     | `/lovelace/0`            |
@@ -143,9 +143,11 @@ Have some issues of displaying on firefox. Please try with caution!
 
 ## MORE WORKS TO DO
 
-1. Remove hard-coded style
+1. Change hard-coded styles and clean codes
 
-2. Support input_number and lights entities in Home Assistant
+2. Remove unnecessary css and js blocks
+
+2. Support input_number and light entities in Home Assistant
 
 ### Many Thanks to DBuit!
 
