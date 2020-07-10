@@ -40,8 +40,10 @@ class VerticalSliderCoverCard extends LitElement {
     var showButton = this.config.showButton == "show" ? true : false;
     var buttonText = this.config.buttonText ? this.config.buttonText : "Home";
     var buttonPath = this.config.buttonPath ? this.config.buttonPath : "/lovelace/0";
-    var background = this.config.background ? this.config.background : "transparent";
+    var buttonService = this.config.buttonService ? this.config.buttonService: "";
+    var buttonData = this.config.buttonData ? this.config.buttonData : "";
     
+    var background = this.config.background ? this.config.background : "transparent";
     var sideColor1 = this.config.sideColor1 ? this.config.sideColor1 : '#ffcccc';
     var sideColor2 = this.config.sideColor2 ? this.config.sideColor2 : '#b30000';
     var switchColor = this.config.switchColor ? this.config.switchColor : sideColor2;
@@ -64,7 +66,7 @@ class VerticalSliderCoverCard extends LitElement {
               <h3>${this._stateCount()} ${countText}</h3>
             </div>
             <div class="bottom">
-                ${showButton ? html`<button class="back-btn" @click=${e => this._navigate(buttonPath)}>${buttonText}</button>` : html``}
+                ${showButton ? html`<button class="back-btn" @click=${e => this._navigate(buttonPath,buttonService,buttonData)}>${buttonText}</button>` : html``}
             </div>
           </div>
           
@@ -89,7 +91,7 @@ class VerticalSliderCoverCard extends LitElement {
                       <div class="cover-slider">
                         <p class="cover-name" style="--cover-fontSize: ${this._coverNameFont(positionWidth,gapWidth)}px;">${ent.name || stateObj.attributes.friendly_name}</p>
                         ${stateObj.attributes.supported_features > 9 ? html`
-                            <p class="cover-position" style="--cover-fontSize: ${parseInt(positionWidth.replace(/px/,"")) / 4 - (parseInt(positionWidth.replace(/px/,"")) - 80) / 4}px;">${stateObj.state === "closed" ? 0 : Math.round(stateObj.attributes.current_position)}</p>
+                            <p class="cover-position" style="--cover-fontSize: ${parseInt(positionWidth.replace(/px/,"")) / 4 - (parseInt(positionWidth.replace(/px/,"")) - 60) / 4}px;">${stateObj.state === "closed" ? 0 : Math.round(stateObj.attributes.current_position)}</p>
                             <div class="range-holder" style="--slider-height: ${positionHeight};--closed-color: ${closedColor};">
                               <input type="range" class="${stateObj.state}" style="--slider-width: ${positionWidth};--slider-height: ${positionHeight};--closed-color: ${closedColor};--open-color: ${openColor};" .value="${stateObj.state === "closed" ? 0 : Math.round(stateObj.attributes.current_position)}" @change=${e => this._setPosition(stateObj, e.target.value)}>
                             </div>
@@ -101,7 +103,7 @@ class VerticalSliderCoverCard extends LitElement {
                         `}
                         <div class="toggle">
                             <input ?checked=${stateObj.state == "open"} type="checkbox" id="toggle${entityCounter}" class="toggle-btn" @change=${e => this._switch(stateObj)} />
-                            <label for="toggle${entityCounter}" style="--switch-width: ${switchWidth};--switch-height: ${switchHeight};--switch-color: ${switchColor};--switch-labelSize: ${parseInt(switchWidth.replace(/px/,"")) / 4}px;"><span></span></label>
+                            <label for="toggle${entityCounter}" style="--switch-width: ${switchWidth};--switch-height: ${switchHeight};--switch-color: ${switchColor};--switch-labelSize: ${parseInt(switchWidth.replace(/px/,"")) / 5}px;"><span></span></label>
                             </div>
                       </div>
                     </div>
@@ -155,7 +157,7 @@ class VerticalSliderCoverCard extends LitElement {
               maxLength = name.length;
           }
       })
-    return (((parseInt(positionWidth.replace(/px/,"")) + parseInt(gapWidth.replace(/px/,"")) - 4 ) / maxLength) * 1.6) | 0;
+    return (((parseInt(positionWidth.replace(/px/,"")) + parseInt(gapWidth.replace(/px/,"")) - 4 ) / maxLength) * 1.8) | 0;
   }
   
   _switch(state) {
@@ -164,8 +166,16 @@ class VerticalSliderCoverCard extends LitElement {
       });
   }
   
-  _navigate(path) {
+  _navigate(path,service,data) {
+    if (service.length === 0) {
       window.location.href = path;
+    } else {
+      var domain = service.split(".",2)[0];
+      var ser = service.split(".",2)[1];
+      this.hass.callService(domain,ser, {
+        entity_id: data
+      });
+    }
   }
   
   setConfig(config) {
@@ -260,6 +270,7 @@ class VerticalSliderCoverCard extends LitElement {
         }
         
         .page > .main {
+          width:70%;
           overflow-x:scroll;
         }
         .page > .main > .inner-main {
@@ -323,8 +334,8 @@ class VerticalSliderCoverCard extends LitElement {
         .cover-position {
           display: block;
           font-weight: 300;
-          margin-top: 15px;
-          margin-bottom: 10px;
+          margin-top: 7px;
+          margin-bottom: 20px;
           text-align: center;
           font-size: var(--cover-fontSize);
         }

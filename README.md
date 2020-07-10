@@ -40,10 +40,14 @@ Color Picker Helper
 | positionWidth     | string  | **Optional** | Width of each slider in px                  | `100px`                  |
 | switchHeight      | string  | **Optional** | Height of Stop button at bottom             | `100px`                  |
 | switchWidth       | string  | **Optional** | Width of Stop button at bottom              | `100px`                  |
+| panelType         | boolean | **Optional** | Try to center all sliders (gapWidth ignored)| `true`                   |
+| showSidebar       | boolean | **Optional** | Show or hide side bar (1)                   | `true`                   |
 | gapWidth          | string  | **Optional** | Width of Space between 2 cover slider       | `50px`                   |
 | showButton        | string  | **Optional** | Show Home button at bottom of side bar      | `hide`                   |
-| buttonPath        | string  | **Optional** | Path of Lovelace View when click button     | `/lovelace/0`            |
 | buttonText        | string  | **Optional** | Text to show on button                      | `Home`                   |
+| buttonPath        | string  | **Optional** | Path of Lovelace View when click button     | `/lovelace/0`            |
+| buttonService     | string  | **Optional** | Service to call (overide buttonPath if any) | `null`                   |
+| buttonData        | string  | **Optional** | Service data to call                        | `null`                   |
 | countText         | string  | **Optional** | Text to show follow number of covers open   | `covers open`            |
 | background        | string  | **Optional** | Background in hex (# or hsl with opacity)   | `transparent`            |
 | sideColor1        | string  | **Optional** | Upper-left color of sidebar (~)             | `#b30000`                |
@@ -89,9 +93,14 @@ type: 'custom:vertical-slider-cover-card'
 background: 'rgb(0, 0, 0, 0.4)'
 buttonPath: /lovelace/0
 buttonText: Home
+#Call service instead of navigating -> comment 1 above line & uncomment all belows
+#buttonText: CLOSE
+#buttonService: cover.close_cover
+#buttonData: 'cover.office_left_blinds,cover.office_right_blinds,cover.basement_shutter'
 countText: 'covers open'
 icon: 'mdi:blinds'
 panelType: true
+showSidebar: true
 positionHeight: 300px
 positionWidth: 100px
 showButton: show
@@ -110,6 +119,9 @@ entities:
   - entity: cover.basement_shutter
     name: Basement Shutter
 ```
+
+**(1)** You might want to hide side bar (showSidebar: false) to have 2 covers in same card on mobile
+
 ### LAST STEP
 
 Style it using card-mod?
