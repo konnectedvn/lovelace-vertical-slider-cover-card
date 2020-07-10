@@ -48,13 +48,15 @@ class VerticalSliderCoverCard extends LitElement {
     var sideColor2 = this.config.sideColor2 ? this.config.sideColor2 : '#b30000';
     var switchColor = this.config.switchColor ? this.config.switchColor : sideColor2;
     var closedColor = this.config.closedColor ? this.config.closedColor : 'hsl(0, 0%, 20%)';
-    var openColor = this.config.openColor ? this.config.openColor: 'hsl(0, 0%, 90%, 0.6)';
+    var openColor = this.config.openColor ? this.config.openColor : 'hsl(0, 0%, 90%, 0.6)';
     var panelType = this.config.panelType;
+    var showSidebar = this.config.showSidebar;
+    var titleSize = this.config.titleSize ? this.config.titleSize : "40px";
     return html`
         <ha-card>
         <div class="page" style="background:${background};">
         
-          <div class="side" style="--side-width:${this._panelSize(panelType)};--sideColor-1:${sideColor1};--sideColor-2:${sideColor2};">
+          <div class="side" style="${this._panelSize(panelType)};--show-sidebar:${this._showSidebar(showSidebar)};--sideColor-1:${sideColor1};--sideColor-2:${sideColor2};">
             <div class="header">
               
             </div>
@@ -62,16 +64,16 @@ class VerticalSliderCoverCard extends LitElement {
               <div class="icon">
                 <ha-icon icon="${this.config.icon}" />
               </div>
-              <h1>${this.config.title}</h1>
-              <h3>${this._stateCount()} ${countText}</h3>
+              <h1 style="--title-size:${titleSize};">${this.config.title}</h1>
+              <h3 style="--count-size:${this._coverFont(titleSize,countText)}px;">${this._stateCount()} ${countText}</h3>
             </div>
             <div class="bottom">
-                ${showButton ? html`<button class="back-btn" @click=${e => this._navigate(buttonPath,buttonService,buttonData)}>${buttonText}</button>` : html``}
+                ${showButton ? html`<button class="back-btn" style="--button-size:${this._buttonFont(titleSize,buttonText)}px;" @click=${e => this._navigate(buttonPath,buttonService,buttonData)}>${buttonText}</button>` : html``}
             </div>
           </div>
           
           <div class="main">
-            <div class="inner-main" style="width:${this.config.entities.length * this._coverSize(positionWidth, gapWidth)}px;">
+            <div class="inner-main">
             ${this.config.entities.map(ent => {
                 entityCounter++;
                 var switchValue = 0;
@@ -87,7 +89,7 @@ class VerticalSliderCoverCard extends LitElement {
                         switchValue = 0;
                 }
                 return stateObj ? html`
-                    <div class="cover" style="--cover-width:${this._coverSize(positionWidth,gapWidth)}px;">
+                    <div class="cover" style="--cover-width:${this._coverSize(positionWidth,gapWidth,panelType)};--center-slider:${this._centerSliders(panelType)};">
                       <div class="cover-slider">
                         <p class="cover-name" style="--cover-fontSize: ${this._coverNameFont(positionWidth,gapWidth)}px;">${ent.name || stateObj.attributes.friendly_name}</p>
                         ${stateObj.attributes.supported_features > 9 ? html`
@@ -137,15 +139,46 @@ class VerticalSliderCoverCard extends LitElement {
   }
   
   _panelSize(panelType) {
-    let sideWidth = 40;
+    var sideWidth = 40;
     if (panelType === true) {
-		sideWidth = 30;
-	}
-  	return sideWidth;
+	  sideWidth = 30;
+    }
+  	return "--side-width:" + sideWidth + "px";
   }
-    
-  _coverSize(positionWidth, gapWidth) {
-    return (parseInt(positionWidth.replace(/px/,"")) + parseInt(gapWidth.replace(/px/,"")));
+  
+  _showSidebar(showSidebar) {
+    if (showSidebar === false) {
+      return "none";
+    }
+    return "flex";
+  }
+  
+  _coverSize(positionWidth, gapWidth, panelType) {
+    if (panelType === false) {
+      return (parseInt(positionWidth.replace(/px/,"")) + parseInt(gapWidth.replace(/px/,""))) + "px";
+    } else {
+      return "50%";
+    }
+  }
+  
+  _coverFont(titleSize,countText) {
+    var fieldSize = parseInt(titleSize.replace(/px/,"")) * this.config.title.length;
+    var countSize = fieldSize / ( this._stateCount().toString().length + countText.length);
+    return countSize * 0.9;
+  }
+  
+  _buttonFont(titleSize,buttonText) {
+    var fieldSize = parseInt(titleSize.replace(/px/,"")) * this.config.title.length;
+    var buttonSize = fieldSize / buttonText.length;
+    return buttonSize * 0.5;
+  }
+  
+  _centerSliders(panelType) {
+    if (panelType === true) {
+      return "0 auto";
+    } else {
+      return "0";
+    }
   }
   
   _coverNameFont(positionWidth, gapWidth) {
@@ -221,11 +254,11 @@ class VerticalSliderCoverCard extends LitElement {
         .page > .side {
           padding: 10px;
           width: var(--side-width)%;
-          display:flex;
+          display:var(--show-sidebar);
           flex-direction:column;
           background: rgb(28,122,226);
           background: linear-gradient(145deg, var(--sideColor-1) 0%, var(--sideColor-2) 90%);
-          justify-content:space-between
+          justify-content:space-between;
         }
         .side .header {
         }
@@ -238,21 +271,21 @@ class VerticalSliderCoverCard extends LitElement {
           overflow:hidden;
         }
         .side .center .icon ha-icon {
-          color:#fff;
+          color:#FFF;
         }
         .side .center  h1 {
           color:#FFF;
           margin:10px 0 0 0;
           font-weight:400;
-          font-size: 40px;
-          line-height: 40px;
+          font-size: var(--title-size);
+          line-height: var(--title-size);
         }
         .side .center  h3 {
           color:#FFF;
-          margin:5px 0 0 0;
-          font-size: 20px;
+          margin:5px 0 5px 0;
+          font-size: var(--count-size);
           font-weight: 400;
-          margin: 0;
+          line-height: var(--count-size);
         }
         
         .side .bottom {
@@ -262,7 +295,7 @@ class VerticalSliderCoverCard extends LitElement {
           border:2px solid #FFF;
           color:#FFF;
           background:transparent;
-          font-size:24px;
+          font-size:var(--button-size);
           border-radius:4px;
           width:100%;
           display:block;
@@ -270,7 +303,7 @@ class VerticalSliderCoverCard extends LitElement {
         }
         
         .page > .main {
-          width:70%;
+          width:100%;
           overflow-x:scroll;
         }
         .page > .main > .inner-main {
@@ -278,11 +311,12 @@ class VerticalSliderCoverCard extends LitElement {
             flex-direction:row;
             align-items:center;
             height:100%;
-            margin:auto;
+            margin: auto;
         }
         .page > .main > .inner-main > .cover {
           width: var(--cover-width);
           display:inline-block;
+          margin: var(--center-slider);
         }
         
         .cover .icon {

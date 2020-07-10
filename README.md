@@ -36,6 +36,7 @@ Color Picker Helper
 | title             | string  | **Required** | Title                                       | `VerticalSliderCoverCard`|
 | entities          | list    | **Required** | Cover entities to show as slider in card    |                          |
 | icon              | string  | **Optional** | Icon to show on side bar                    | ``                       |
+| titleSize         | string  | **Optional** | Font size of title                          | `40px`                   |
 | positionHeight    | string  | **Optional** | Height of each slider in px                 | `300px`                  |
 | positionWidth     | string  | **Optional** | Width of each slider in px                  | `100px`                  |
 | switchHeight      | string  | **Optional** | Height of Stop button at bottom             | `100px`                  |
@@ -90,10 +91,11 @@ In View option, check Panel mode if you want do display card in full width.
 #example configuration
 ```
 type: 'custom:vertical-slider-cover-card'
-background: 'rgb(0, 0, 0, 0.4)'
+background: 'rgba(0, 0, 0, 0.4)'
+showButton: show
 buttonPath: /lovelace/0
 buttonText: Home
-#Call service instead of navigating -> comment 1 above line & uncomment all belows
+#Call service instead of navigating -> comment 1 line above & uncomment all belows
 #buttonText: CLOSE
 #buttonService: cover.close_cover
 #buttonData: 'cover.office_left_blinds,cover.office_right_blinds,cover.basement_shutter'
@@ -103,7 +105,7 @@ panelType: true
 showSidebar: true
 positionHeight: 300px
 positionWidth: 100px
-showButton: show
+gapWidth: 50px
 switchHeight: 80px
 switchWidth: 100px
 sideColor1: '#b30000'
@@ -111,6 +113,7 @@ sideColor2: '#ffcccc'
 openColor: 'hsl(0, 0%, 20%, 0.8)'
 closedColor: 'hsl(0, 0%, 90%)'
 title: Covers
+titleSize: 40px
 entities:
   - entity: cover.office_left_blinds
     name: Left Blinds
