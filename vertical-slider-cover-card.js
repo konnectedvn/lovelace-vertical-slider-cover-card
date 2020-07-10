@@ -6,7 +6,7 @@
  * Based on      : github.com/DBuit/hass-smart-home-panel-card (Thanks to DBuit!)
  */
 
-console.info("%c [konnected.vn] Vertical Slider Cover Card  \n%c Version 0.0.5","color: red; font-weight: bold; background: black", "color: white; font-weight: bold; background: dimgray");
+console.info("%c [konnected.vn] Vertical Slider Cover Card  \n%c Version 0.0.6","color: red; font-weight: bold; background: black", "color: white; font-weight: bold; background: dimgray");
 
 import {
     LitElement,
@@ -32,6 +32,7 @@ class VerticalSliderCoverCard extends LitElement {
     var positionHeight = this.config.positionHeight ? this.config.positionHeight : "300px";
     var switchWidth = this.config.switchWidth ? this.config.switchWidth : "100px";
     var switchHeight = this.config.switchHeight ? this.config.switchHeight : "100px";
+    var gapWidth = this.config.gapWidth ? this.config.gapWidth : "50px";
     
     var countText = this.config.countText ? this.config.countText : "covers open";
     var entityCounter = 0;
@@ -41,8 +42,9 @@ class VerticalSliderCoverCard extends LitElement {
     var buttonPath = this.config.buttonPath ? this.config.buttonPath : "/lovelace/0";
     var background = this.config.background ? this.config.background : "transparent";
     
-    var sideColor1 = this.config.sideColor1 ? this.config.sideColor1 : '#b30000';
-    var sideColor2 = this.config.sideColor2 ? this.config.sideColor2 : '#ffcccc';
+    var sideColor1 = this.config.sideColor1 ? this.config.sideColor1 : '#ffcccc';
+    var sideColor2 = this.config.sideColor2 ? this.config.sideColor2 : '#b30000';
+    var switchColor = this.config.switchColor ? this.config.switchColor : sideColor2;
     var closedColor = this.config.closedColor ? this.config.closedColor : 'hsl(0, 0%, 20%)';
     var openColor = this.config.openColor ? this.config.openColor: 'hsl(0, 0%, 90%, 0.6)';
     var panelType = this.config.panelType;
@@ -67,7 +69,7 @@ class VerticalSliderCoverCard extends LitElement {
           </div>
           
           <div class="main">
-            <div class="inner-main" style="width:${this.config.entities.length * 150}px;">
+            <div class="inner-main" style="width:${this.config.entities.length * this._coverSize(positionWidth, gapWidth)}px;">
             ${this.config.entities.map(ent => {
                 entityCounter++;
                 var switchValue = 0;
@@ -83,11 +85,11 @@ class VerticalSliderCoverCard extends LitElement {
                         switchValue = 0;
                 }
                 return stateObj ? html`
-                    <div class="cover">
+                    <div class="cover" style="--cover-width:${this._coverSize(positionWidth,gapWidth)}px;">
                       <div class="cover-slider">
-                        <h3>${ent.name || stateObj.attributes.friendly_name}</h3>
+                        <p class="cover-name" style="--cover-fontSize: ${this._coverNameFont(positionWidth,gapWidth)}px;">${ent.name || stateObj.attributes.friendly_name}</p>
                         ${stateObj.attributes.supported_features > 9 ? html`
-                            <h4 class="position">${stateObj.state === "closed" ? 0 : Math.round(stateObj.attributes.current_position)}</h4>
+                            <p class="cover-position" style="--cover-fontSize: ${parseInt(positionWidth.replace(/px/,"")) / 4 - (parseInt(positionWidth.replace(/px/,"")) - 80) / 4}px;">${stateObj.state === "closed" ? 0 : Math.round(stateObj.attributes.current_position)}</p>
                             <div class="range-holder" style="--slider-height: ${positionHeight};--closed-color: ${closedColor};">
                               <input type="range" class="${stateObj.state}" style="--slider-width: ${positionWidth};--slider-height: ${positionHeight};--closed-color: ${closedColor};--open-color: ${openColor};" .value="${stateObj.state === "closed" ? 0 : Math.round(stateObj.attributes.current_position)}" @change=${e => this._setPosition(stateObj, e.target.value)}>
                             </div>
@@ -99,7 +101,7 @@ class VerticalSliderCoverCard extends LitElement {
                         `}
                         <div class="toggle">
                             <input ?checked=${stateObj.state == "open"} type="checkbox" id="toggle${entityCounter}" class="toggle-btn" @change=${e => this._switch(stateObj)} />
-                            <label for="toggle${entityCounter}" style="--switch-width: ${switchWidth};--switch-height: ${switchHeight};--switch-color: ${sideColor1};"><span></span></label>
+                            <label for="toggle${entityCounter}" style="--switch-width: ${switchWidth};--switch-height: ${switchHeight};--switch-color: ${switchColor};--switch-labelSize: ${parseInt(switchWidth.replace(/px/,"")) / 4}px;"><span></span></label>
                             </div>
                       </div>
                     </div>
@@ -135,12 +137,27 @@ class VerticalSliderCoverCard extends LitElement {
   _panelSize(panelType) {
     let sideWidth = 40;
     if (panelType === true) {
-    	console.log(panelType);
 		sideWidth = 30;
 	}
   	return sideWidth;
   }
-
+    
+  _coverSize(positionWidth, gapWidth) {
+    return (parseInt(positionWidth.replace(/px/,"")) + parseInt(gapWidth.replace(/px/,"")));
+  }
+  
+  _coverNameFont(positionWidth, gapWidth) {
+    var maxLength = 0;
+    this.config.entities.map(ent => {
+          const stateObj = this.hass.states[ent.entity];
+          var name = ent.name || stateObj.attributes.friendly_name;
+          if(name.length > maxLength) {
+              maxLength = name.length;
+          }
+      })
+    return (((parseInt(positionWidth.replace(/px/,"")) + parseInt(gapWidth.replace(/px/,"")) - 4 ) / maxLength) * 1.6) | 0;
+  }
+  
   _switch(state) {
       this.hass.callService("cover", "stop_cover", {
         entity_id: state.entity_id    
@@ -193,20 +210,18 @@ class VerticalSliderCoverCard extends LitElement {
         }
         .page > .side {
           padding: 10px;
-          width: var(--side-width);
+          width: var(--side-width)%;
           display:flex;
           flex-direction:column;
           background: rgb(28,122,226);
-          background: linear-gradient(325deg, var(--sideColor-1) 0%, var(--sideColor-2) 90%);
+          background: linear-gradient(145deg, var(--sideColor-1) 0%, var(--sideColor-2) 90%);
           justify-content:space-between
         }
         .side .header {
-          
         }
         .side .center {
           display:flex;
           flex-direction:column;
-          
         }
         .side .center .icon {
           display:block;
@@ -245,7 +260,6 @@ class VerticalSliderCoverCard extends LitElement {
         }
         
         .page > .main {
-          width:70%;
           overflow-x:scroll;
         }
         .page > .main > .inner-main {
@@ -256,7 +270,7 @@ class VerticalSliderCoverCard extends LitElement {
             margin:auto;
         }
         .page > .main > .inner-main > .cover {
-          width:150px;
+          width: var(--cover-width);
           display:inline-block;
         }
         
@@ -287,6 +301,7 @@ class VerticalSliderCoverCard extends LitElement {
           font-size:20px;
           margin-top:0;
         }
+        
         h3 {
           color: #FFF;
           display: block;
@@ -296,9 +311,27 @@ class VerticalSliderCoverCard extends LitElement {
           text-align: center;
           font-size:18px;
         }
-        .cover-slider h3 {
+        
+        .cover-name {
+          display: block;
+          font-weight: 300;
+          margin-top: 5px;
+          margin-bottom: 5px;
+          text-align: center;
+          font-size: var(--cover-fontSize);
+        }
+        .cover-position {
+          display: block;
+          font-weight: 300;
+          margin-top: 15px;
+          margin-bottom: 10px;
+          text-align: center;
+          font-size: var(--cover-fontSize);
+        }
+        .cover-slider .cover-name, .cover-position {
           color: var(--primary-text-color);
         }
+        
         h4 {
           color: var(--primary-text-color);
           display: block;
@@ -342,7 +375,7 @@ class VerticalSliderCoverCard extends LitElement {
           height: var(--slider-width);
           -webkit-appearance: none;
           color: var(--open-color);
-          margin-top: -1px;
+          margin-top: 0px;
           transition: box-shadow 0.2s ease-in-out;
         }
         .range-holder input[type="range"]::-webkit-slider-thumb {
@@ -436,7 +469,7 @@ class VerticalSliderCoverCard extends LitElement {
           border-radius: 4px;
           color: #FFF;
           display:block;
-          font-size:22px;
+          font-size:var(--switch-labelSize);
         }
         .toggle > input.toggle-btn + label:active,
         .toggle > input.toggle-btn + label {

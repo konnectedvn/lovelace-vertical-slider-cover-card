@@ -40,6 +40,7 @@ Color Picker Helper
 | positionWidth     | string  | **Optional** | Width of each slider in px                  | `100px`                  |
 | switchHeight      | string  | **Optional** | Height of Stop button at bottom             | `100px`                  |
 | switchWidth       | string  | **Optional** | Width of Stop button at bottom              | `100px`                  |
+| gapWidth          | string  | **Optional** | Width of Space between 2 cover slider       | `50px`                   |
 | showButton        | string  | **Optional** | Show Home button at bottom of side bar      | `hide`                   |
 | buttonPath        | string  | **Optional** | Path of Lovelace View when click button     | `/lovelace/0`            |
 | buttonText        | string  | **Optional** | Text to show on button                      | `Home`                   |
@@ -49,6 +50,7 @@ Color Picker Helper
 | sideColor2        | string  | **Optional** | Lower-right color of sidebar (~)            | `#ffcccc`                |
 | openColor         | string  | **Optional** | Color of lower slider bar (~)               | `hsl(0, 0%, 90%, 0.8)`   |
 | closedColor       | string  | **Optional** | Color of upper slider bar (~)               | `hsl(0, 0%, 20%)`        |
+| switchColor       | string  | **Optional** | background color of Stop button (~)         | `sideColor2`             |
 
 ## STARTING A NEW CARD FROM vertical-silder-cover-card
 
@@ -119,6 +121,10 @@ Customize to suit your needs and contribute it back to the community.
 Found issue? Please raise an issue in this repository or send me email to <duytruong@konnected.vn>
 
 And suggestion and comment are warmly welcome and appreciated!
+
+### MIGHT NOT WORK ON FIREFOX
+
+Have some issues of displaying on firefox. Please try with caution!
 
 ## MORE WORKS TO DO
 
