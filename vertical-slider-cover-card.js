@@ -6,7 +6,7 @@
  * Based on      : github.com/DBuit/hass-smart-home-panel-card (Thanks to DBuit!)
  */
 
-console.info("%c [konnected.vn] Vertical Slider Cover Card  \n%c Version 0.0.6","color: red; font-weight: bold; background: black", "color: white; font-weight: bold; background: dimgray");
+console.info("%c [konnected.vn] Vertical Slider Cover Card  \n%c Version v0.0.6","color: red; font-weight: bold; background: black", "color: white; font-weight: bold; background: dimgray");
 
 import {
     LitElement,
@@ -35,6 +35,7 @@ class VerticalSliderCoverCard extends LitElement {
     var gapWidth = this.config.gapWidth ? this.config.gapWidth : "50px";
     
     var countText = this.config.countText ? this.config.countText : "covers open";
+    var openBaseline = this.config.closedBaseline ? this.config.closedBaseline : 0;
     var entityCounter = 0;
     
     var showButton = this.config.showButton == "show" ? true : false;
@@ -65,7 +66,7 @@ class VerticalSliderCoverCard extends LitElement {
                 <ha-icon icon="${this.config.icon}" />
               </div>
               <h1 style="--title-size:${titleSize};">${this.config.title}</h1>
-              <h3 style="--count-size:${this._coverFont(titleSize,countText)}px;">${this._stateCount()} ${countText}</h3>
+              <h3 style="--count-size:${this._coverFont(titleSize,countText)}px;">${this._stateCount(openBaseline)} ${countText}</h3>
             </div>
             <div class="bottom">
                 ${showButton ? html`<button class="back-btn" style="--button-size:${this._buttonFont(titleSize,buttonText)}px;" @click=${e => this._navigate(buttonPath,buttonService,buttonData)}>${buttonText}</button>` : html``}
@@ -127,11 +128,13 @@ class VerticalSliderCoverCard extends LitElement {
     });
   }
   
-  _stateCount() {
+  _stateCount(baseline) {
       let count = 0;
       this.config.entities.map(ent => {
           const stateObj = this.hass.states[ent.entity];
-          if(stateObj.state === "open") {
+          if(stateObj.state === "open" && baseline === 0) {
+              count++;
+          } else if (stateObj.attributes.current_position >= baseline && baseline > 0) {
               count++;
           }
       })
