@@ -61,7 +61,8 @@ Color Picker Helper
 
 ### INSTALL USING HACS (recommended)
 
-Add this repo to HACS custom repositories.
+<del>Add this repo to HACS custom repositories.</del>
+Card is in HACS default.
 
 **repo**: https://github.com/konnectedvn/lovelace-vertical-slider-cover-card
 
@@ -135,7 +136,7 @@ Customize to suit your needs and contribute it back to the community.
 
 Found issue? Please raise an issue in this repository or send me email to <duytruong@konnected.vn>
 
-And suggestion and comment are warmly welcome and appreciated!
+Any suggestion and comment are warmly welcome and appreciated!
 
 ### MIGHT NOT WORK ON FIREFOX
 
@@ -147,7 +148,7 @@ Have some issues of displaying on firefox. Please try with caution!
 
 2. Remove unnecessary css and js blocks
 
-2. Support input_number and light entities in Home Assistant
+3. Support input_number and light entities in Home Assistant
 
 ### Many Thanks to DBuit!
 
