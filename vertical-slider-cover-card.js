@@ -94,7 +94,7 @@ class VerticalSliderCoverCard extends LitElement {
                     <div class="cover" style="--cover-width:${this._coverSize(positionWidth,gapWidth,panelType)};--center-slider:${this._centerSliders(panelType)};">
                       <div class="cover-slider">
                         <p class="cover-name" style="--cover-fontSize: ${this._coverNameFont(positionWidth,gapWidth)}px;">${ent.name || stateObj.attributes.friendly_name}</p>
-                        ${stateObj.attributes.supported_features > 9 ? html`
+                        ${stateObj.attributes.supported_features > 6 ? html`
                             <p class="cover-position" style="--cover-fontSize: ${parseInt(positionWidth.replace(/px/,"")) / 4 - (parseInt(positionWidth.replace(/px/,"")) - 60) / 4}px;">${stateObj.state === "closed" ? 0 : Math.round(stateObj.attributes.current_position)}</p>
                             <div class="range-holder" style="--slider-height: ${positionHeight};--closed-color: ${closedColor};">
                               <input type="range" class="${stateObj.state}" style="--slider-width: ${positionWidth};--slider-height: ${positionHeight};--closed-color: ${closedColor};--open-color: ${openColor};" .value="${stateObj.state === "closed" ? 0 : Math.round(stateObj.attributes.current_position)}" @change=${e => this._setPosition(stateObj, e.target.value)}>
@@ -227,6 +227,11 @@ class VerticalSliderCoverCard extends LitElement {
     }
     if (!config.title) {
       throw new Error("You need to define a title");
+    }
+    for (var i = 0, len = config.entities.length; i < len; i++) {
+      if (config.entities[i].entity === undefined) {
+        throw new Error(config.entities[i] + " is INVALID! Should be object: - entity: " + config.entities[i] + ".");
+      }
     }
     this.config = config;
   }

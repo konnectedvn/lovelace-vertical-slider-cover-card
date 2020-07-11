@@ -1,6 +1,5 @@
 # Vertical Slider Cover Card by konnected.vn (https://konnected.vn - VI)
 
-
 [![GitHub Release][releases-shield]][releases]
 [![License][license-shield]](LICENSE.md)
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg?style=for-the-badge)](https://github.com/custom-components/hacs)
@@ -27,6 +26,12 @@ Color Picker Helper
 
 ![card screenshot](https://github.com/konnectedvn/lovelace-vertical-slider-cover-card/blob/master/src/konnected_vn_color_picker.png?raw=true "Desktop screenshot")
 
+## MINIMUM REQUIREMENTS
+
+
+Your covers have to support `close_cover`, `open_cover` and `set_cover_position` services.
+Normally, this means `attributes.supported_features` is at least 7 or greater.
+
 
 # Options
 
@@ -50,6 +55,7 @@ Color Picker Helper
 | buttonService     | string  | **Optional** | Service to call (overide buttonPath if any) | `null`                   |
 | buttonData        | string  | **Optional** | Service data to call                        | `null`                   |
 | countText         | string  | **Optional** | Text to show follow number of covers open   | `covers open`            |
+| openBaseline      | integer | **Optional** | (2)                                         | `0`            |
 | background        | string  | **Optional** | Background in hex (# or hsl with opacity)   | `transparent`            |
 | sideColor1        | string  | **Optional** | Upper-left color of sidebar (~)             | `#ffcccc`                |
 | sideColor2        | string  | **Optional** | Lower-right color of sidebar (~)            | `#b30000`                |
@@ -101,6 +107,7 @@ buttonText: Home
 #buttonService: cover.close_cover
 #buttonData: 'cover.office_left_blinds,cover.office_right_blinds,cover.basement_shutter'
 countText: 'covers open'
+closedBaseline
 icon: 'mdi:blinds'
 panelType: true
 showSidebar: true
@@ -125,6 +132,9 @@ entities:
 ```
 
 **(1)** You might want to hide side bar (showSidebar: false) to have 2 covers in same card on mobile
+**(2)** openBaseline - some covers stop at position 2 or 1 instead of 0. When set, any cover with current_position
+greater than *openBaseline* will be counted as open.
+
 
 ### LAST STEP
 
