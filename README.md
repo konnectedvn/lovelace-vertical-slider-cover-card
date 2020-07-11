@@ -33,14 +33,14 @@ Color Picker Helper
 | Name              | Type    | Requirement  | Description                                 | Default                  |
 | ----------------- | ------- | ------------ | ------------------------------------------- | ------------------------ |
 | type              | string  | **Required** | `custom:vertical-slider-cover-card`         |                          |
-| title             | string  | **Required** | Title                                       | `VerticalSliderCoverCard`|
+| title             | string  | **Required** | Title                                       |                          |
 | entities          | list    | **Required** | Cover entities to show as slider in card    |                          |
-| icon              | string  | **Optional** | Icon to show on side bar                    | `mdi:blinds`                       |
+| icon              | string  | **Optional** | Icon to show on side bar                    | `mdi:blinds`             |
 | titleSize         | string  | **Optional** | Font size of title                          | `40px`                   |
 | positionHeight    | string  | **Optional** | Height of each slider in px                 | `300px`                  |
 | positionWidth     | string  | **Optional** | Width of each slider in px                  | `100px`                  |
-| switchWidth       | string  | **Optional** | Width of Stop button at bottom              | `positionWidth`                  |
-| switchHeight      | string  | **Optional** | Height of Stop button at bottom             | `switchWidth`                  |
+| switchWidth       | string  | **Optional** | Width of Stop button at bottom              | `positionWidth`          |
+| switchHeight      | string  | **Optional** | Height of Stop button at bottom             | `switchWidth`            |
 | panelType         | boolean | **Optional** | Try to center all sliders (gapWidth ignored)| `true`                   |
 | showSidebar       | boolean | **Optional** | Show or hide side bar (1)                   | `true`                   |
 | gapWidth          | string  | **Optional** | Width of Space between 2 cover sliders      | `50px`                   |
