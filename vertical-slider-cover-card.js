@@ -31,8 +31,8 @@ class VerticalSliderCoverCard extends LitElement {
     var icon = this.config.icon ? this.config.icon : "mdi:blinds";
     var positionWidth = this.config.positionWidth ? this.config.positionWidth : "100px";
     var positionHeight = this.config.positionHeight ? this.config.positionHeight : "300px";
-    var switchWidth = this.config.switchWidth ? this.config.switchWidth : "100px";
-    var switchHeight = this.config.switchHeight ? this.config.switchHeight : "100px";
+    var switchWidth = this.config.switchWidth ? this.config.switchWidth : positionWidth;
+    var switchHeight = this.config.switchHeight ? this.config.switchHeight : switchWidth;
     var gapWidth = this.config.gapWidth ? this.config.gapWidth : "50px";
     
     var countText = this.config.countText ? this.config.countText : "covers open";

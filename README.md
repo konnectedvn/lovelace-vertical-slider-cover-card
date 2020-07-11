@@ -35,12 +35,12 @@ Color Picker Helper
 | type              | string  | **Required** | `custom:vertical-slider-cover-card`         |                          |
 | title             | string  | **Required** | Title                                       | `VerticalSliderCoverCard`|
 | entities          | list    | **Required** | Cover entities to show as slider in card    |                          |
-| icon              | string  | **Optional** | Icon to show on side bar                    | ``                       |
+| icon              | string  | **Optional** | Icon to show on side bar                    | `mdi:blinds`                       |
 | titleSize         | string  | **Optional** | Font size of title                          | `40px`                   |
 | positionHeight    | string  | **Optional** | Height of each slider in px                 | `300px`                  |
 | positionWidth     | string  | **Optional** | Width of each slider in px                  | `100px`                  |
-| switchHeight      | string  | **Optional** | Height of Stop button at bottom             | `100px`                  |
-| switchWidth       | string  | **Optional** | Width of Stop button at bottom              | `100px`                  |
+| switchWidth       | string  | **Optional** | Width of Stop button at bottom              | `positionWidth`                  |
+| switchHeight      | string  | **Optional** | Height of Stop button at bottom             | `switchWidth`                  |
 | panelType         | boolean | **Optional** | Try to center all sliders (gapWidth ignored)| `true`                   |
 | showSidebar       | boolean | **Optional** | Show or hide side bar (1)                   | `true`                   |
 | gapWidth          | string  | **Optional** | Width of Space between 2 cover sliders      | `50px`                   |
@@ -51,8 +51,8 @@ Color Picker Helper
 | buttonData        | string  | **Optional** | Service data to call                        | `null`                   |
 | countText         | string  | **Optional** | Text to show follow number of covers open   | `covers open`            |
 | background        | string  | **Optional** | Background in hex (# or hsl with opacity)   | `transparent`            |
-| sideColor1        | string  | **Optional** | Upper-left color of sidebar (~)             | `#b30000`                |
-| sideColor2        | string  | **Optional** | Lower-right color of sidebar (~)            | `#ffcccc`                |
+| sideColor1        | string  | **Optional** | Upper-left color of sidebar (~)             | `#ffcccc`                |
+| sideColor2        | string  | **Optional** | Lower-right color of sidebar (~)            | `#b30000`                |
 | openColor         | string  | **Optional** | Color of lower slider bar (~)               | `hsl(0, 0%, 90%, 0.8)`   |
 | closedColor       | string  | **Optional** | Color of upper slider bar (~)               | `hsl(0, 0%, 20%)`        |
 | switchColor       | string  | **Optional** | background color of Stop button (~)         | `sideColor2`             |
@@ -109,8 +109,8 @@ positionWidth: 100px
 gapWidth: 50px
 switchHeight: 80px
 switchWidth: 100px
-sideColor1: '#b30000'
-sideColor2: '#ffcccc'
+sideColor1: '#ffcccc'
+sideColor2: '#b30000'
 openColor: 'hsl(0, 0%, 20%, 0.8)'
 closedColor: 'hsl(0, 0%, 90%)'
 title: Covers
