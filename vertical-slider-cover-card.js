@@ -6,7 +6,7 @@
  * Based on      : github.com/DBuit/hass-smart-home-panel-card (Thanks to DBuit!)
  */
 
-console.info("%c [konnected.vn] Vertical Slider Cover Card  \n%c Version v0.0.6","color: red; font-weight: bold; background: black", "color: white; font-weight: bold; background: dimgray");
+console.info("%c [konnected.vn] Vertical Slider Cover Card  \n%c Version v0.0.7","color: red; font-weight: bold; background: black", "color: white; font-weight: bold; background: dimgray");
 
 import {
     LitElement,
@@ -28,6 +28,7 @@ class VerticalSliderCoverCard extends LitElement {
   }
   
   render() {
+    var icon = this.config.icon ? this.config.icon : "mdi:blinds";
     var positionWidth = this.config.positionWidth ? this.config.positionWidth : "100px";
     var positionHeight = this.config.positionHeight ? this.config.positionHeight : "300px";
     var switchWidth = this.config.switchWidth ? this.config.switchWidth : "100px";
@@ -63,7 +64,7 @@ class VerticalSliderCoverCard extends LitElement {
             </div>
             <div class="center">
               <div class="icon">
-                <ha-icon icon="${this.config.icon}" />
+                <ha-icon icon="${icon}" />
               </div>
               <h1 style="--title-size:${titleSize};">${this.config.title}</h1>
               <h3 style="--count-size:${this._coverFont(titleSize,countText)}px;">${this._stateCount(openBaseline)} ${countText}</h3>
@@ -193,7 +194,13 @@ class VerticalSliderCoverCard extends LitElement {
               maxLength = name.length;
           }
       })
-    return (((parseInt(positionWidth.replace(/px/,"")) + parseInt(gapWidth.replace(/px/,"")) - 4 ) / maxLength) * 1.8) | 0;
+    var fontsize = parseInt(positionWidth.replace(/px/,""));
+    if (parseInt(gapWidth.replace(/px/,"")) > 50) {
+        fontsize = fontsize + (parseInt(gapWidth.replace(/px/,"")) / 2);
+    } else {
+        fontsize = fontsize + parseInt(gapWidth.replace(/px/,""));
+    }
+    return ((( fontsize - 4 ) / maxLength) * 1.8) | 0;
   }
   
   _switch(state) {
@@ -220,9 +227,6 @@ class VerticalSliderCoverCard extends LitElement {
     }
     if (!config.title) {
       throw new Error("You need to define a title");
-    }
-    if (!config.icon) {
-      throw new Error("You need to define a icon");
     }
     this.config = config;
   }
@@ -278,7 +282,7 @@ class VerticalSliderCoverCard extends LitElement {
         }
         .side .center  h1 {
           color:#FFF;
-          margin:10px 0 0 0;
+          margin:10px 0 0 5px;
           font-weight:400;
           font-size: var(--title-size);
           line-height: var(--title-size);
@@ -363,16 +367,16 @@ class VerticalSliderCoverCard extends LitElement {
         .cover-name {
           display: block;
           font-weight: 300;
-          margin-top: 5px;
-          margin-bottom: 5px;
+          margin-top: calc(var(--cover-fontSize) / 3);
+          margin-bottom: calc(var(--cover-fontSize) / 2);
           text-align: center;
           font-size: var(--cover-fontSize);
         }
         .cover-position {
           display: block;
           font-weight: 300;
-          margin-top: 7px;
-          margin-bottom: 20px;
+          margin-top: calc(var(--cover-fontsize) / 2);
+          margin-bottom: var(--cover-fontsize);
           text-align: center;
           font-size: var(--cover-fontSize);
         }
