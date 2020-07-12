@@ -72,7 +72,7 @@ Card is in HACS default.
 
 **repo**: https://github.com/konnectedvn/lovelace-vertical-slider-cover-card
 
-*Category*: Lovelace
+*Category*: Frontend
 
 Hướng dẫn cài đặt và sử dụng HACS trong Home Assistant có thể xem ở đây (VI - HACS Guide):
 https://konnected.vn/home-assistant/home-assistant-cai-dat-hacs-va-theme-2020-03-27
@@ -131,7 +131,8 @@ entities:
     name: Basement Shutter
 ```
 
-**(1)** You might want to hide side bar (showSidebar: false) to have 2 covers in same card on mobile
+**(1)** You might want to hide side bar (showSidebar: false) to have 2 or 3 covers in same card on mobile.
+
 **(2)** openBaseline - some covers stop at position 2 or 1 instead of 0. When set, any cover with current_position
 greater than *openBaseline* will be counted as open.
 
@@ -150,7 +151,7 @@ Any suggestion and comment are warmly welcome and appreciated!
 
 ### MIGHT NOT WORK ON FIREFOX
 
-Have some issues of displaying on firefox. Please try with caution!
+Have some issues of displaying on Firefox. Please try with caution!
 
 ## MORE WORKS TO DO
 
