@@ -1,4 +1,5 @@
-# Vertical Slider Cover Card by konnected.vn (https://konnected.vn - VI)
+# Vertical Slider Cover Card by konnected.vn
+(https://konnected.vn -VI)
 
 [![GitHub Release][releases-shield]][releases]
 [![License][license-shield]](LICENSE.md)
