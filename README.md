@@ -47,22 +47,23 @@ Normally, this means `attributes.supported_features` is at least 7 or greater.
 | positionWidth     | string  | **Optional** | Width of each slider in px                  | `100px`                  |
 | switchWidth       | string  | **Optional** | Width of Stop button at bottom              | `positionWidth`          |
 | switchHeight      | string  | **Optional** | Height of Stop button at bottom             | `switchWidth`            |
+| showSwitch        | boolean | **Optional** | Show STOP switch under every covers         | `true`                   |
 | panelType         | boolean | **Optional** | Try to center all sliders (gapWidth ignored)| `true`                   |
 | showSidebar       | boolean | **Optional** | Show or hide side bar (1)                   | `true`                   |
 | gapWidth          | string  | **Optional** | Width of Space between 2 cover sliders      | `50px`                   |
-| showButton        | string  | **Optional** | Show Home button at bottom of side bar      | `hide`                   |
+| showButton        | boolean | **Optional** | Show Home button at bottom of side bar      | `false`                  |
 | buttonText        | string  | **Optional** | Text to show on button                      | `Home`                   |
 | buttonPath        | string  | **Optional** | Path of Lovelace View when click button     | `/lovelace/0`            |
 | buttonService     | string  | **Optional** | Service to call (overide buttonPath if any) | `null`                   |
 | buttonData        | string  | **Optional** | Service data to call                        | `null`                   |
 | countText         | string  | **Optional** | Text to show follow number of covers open   | `covers open`            |
-| openBaseline      | integer | **Optional** | (2)                                         | `0`            |
+| openBaseline      | integer | **Optional** | (2)                                         | `0`                      |
 | background        | string  | **Optional** | Background in hex (# or hsl with opacity)   | `transparent`            |
 | sideColor1        | string  | **Optional** | Upper-left color of sidebar (~)             | `#ffcccc`                |
 | sideColor2        | string  | **Optional** | Lower-right color of sidebar (~)            | `#b30000`                |
 | openColor         | string  | **Optional** | Color of lower slider bar (~)               | `hsl(0, 0%, 90%, 0.8)`   |
 | closedColor       | string  | **Optional** | Color of upper slider bar (~)               | `hsl(0, 0%, 20%)`        |
-| switchColor       | string  | **Optional** | background color of Stop button (~)         | `sideColor2`             |
+| switchColor       | string  | **Optional** | Background color of Stop button (~)         | `sideColor2`             |
 
 ## STARTING A NEW CARD FROM vertical-silder-cover-card
 
@@ -100,7 +101,7 @@ In View option, check Panel mode if you want do display card in full width.
 ```
 type: 'custom:vertical-slider-cover-card'
 background: 'rgba(0, 0, 0, 0.4)'
-showButton: show
+showButton: true
 buttonPath: /lovelace/0
 buttonText: Home
 #Call service instead of navigating -> comment 1 line above & uncomment all belows
@@ -117,6 +118,7 @@ positionWidth: 100px
 gapWidth: 50px
 switchHeight: 80px
 switchWidth: 100px
+showSwitch: true
 sideColor1: '#ffcccc'
 sideColor2: '#b30000'
 openColor: 'hsl(0, 0%, 20%, 0.8)'
