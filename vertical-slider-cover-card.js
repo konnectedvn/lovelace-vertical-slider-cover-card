@@ -6,7 +6,7 @@
  * Based on      : github.com/DBuit/hass-smart-home-panel-card (Thanks to DBuit!)
  */
 
-console.info("%c [konnected.vn] Vertical Slider Cover Card  \n%c Version v0.0.8","color: red; font-weight: bold; background: black", "color: white; font-weight: bold; background: dimgray");
+console.info("%c [konnected.vn] Vertical Slider Cover Card  \n%c Version v0.0.9","color: red; font-weight: bold; background: black", "color: white; font-weight: bold; background: dimgray");
 
 import {
     LitElement,
@@ -29,6 +29,8 @@ class VerticalSliderCoverCard extends LitElement {
   
   render() {
     var icon = this.config.icon ? this.config.icon : "mdi:blinds";
+    var iconSize = this.config.iconSize ? this.config.iconSize: "28px";
+
     var positionWidth = this.config.positionWidth ? this.config.positionWidth : "100px";
     var positionHeight = this.config.positionHeight ? this.config.positionHeight : "300px";
     var switchWidth = this.config.switchWidth ? this.config.switchWidth : positionWidth;
@@ -65,10 +67,10 @@ class VerticalSliderCoverCard extends LitElement {
             </div>
             <div class="center">
               <div class="icon">
-                <ha-icon icon="${icon}" />
+                <ha-icon style="--mdc-icon-size:${iconSize};" icon="${icon}" />
               </div>
               <h1 style="--title-size:${titleSize};">${this.config.title}</h1>
-              <h3 style="--count-size:${this._coverFont(titleSize,countText)}px;">${this._stateCount(openBaseline)} ${countText}</h3>
+              <h3>${this._stateCount(openBaseline)} ${countText}</h3>
             </div>
             <div class="bottom">
                 ${showButton ? html`<button class="back-btn" style="--button-size:${this._buttonFont(titleSize,buttonText)}px;" @click=${e => this._navigate(buttonPath,buttonService,buttonData)}>${buttonText}</button>` : html``}
@@ -164,12 +166,6 @@ class VerticalSliderCoverCard extends LitElement {
     } else {
       return "50%";
     }
-  }
-  
-  _coverFont(titleSize,countText) {
-    var fieldSize = parseInt(titleSize.replace(/px/,"")) * this.config.title.length;
-    var countSize = fieldSize / ( this._stateCount().toString().length + countText.length);
-    return countSize * 0.9;
   }
   
   _buttonFont(titleSize,buttonText) {
@@ -282,6 +278,7 @@ class VerticalSliderCoverCard extends LitElement {
         .side .center .icon {
           display:block;
           overflow:hidden;
+          text-align:center;
         }
         .side .center .icon ha-icon {
           color:#FFF;
@@ -296,9 +293,9 @@ class VerticalSliderCoverCard extends LitElement {
         .side .center  h3 {
           color:#FFF;
           margin:5px 0 5px 0;
-          font-size: var(--count-size);
+          font-size: 120%;
           font-weight: 400;
-          line-height: var(--count-size);
+          line-height: 100%;
         }
         
         .side .bottom {

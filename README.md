@@ -42,6 +42,7 @@ Normally, this means `attributes.supported_features` is at least 7 or greater.
 | title             | string  | **Required** | Title                                       |                          |
 | entities          | list    | **Required** | Cover entities to show as slider in card    |                          |
 | icon              | string  | **Optional** | Icon to show on side bar                    | `mdi:blinds`             |
+| iconSize          | string  | **Optional** | Font size of icon on side bar               | `28px`                   |
 | titleSize         | string  | **Optional** | Font size of title                          | `40px`                   |
 | positionHeight    | string  | **Optional** | Height of each slider in px                 | `300px`                  |
 | positionWidth     | string  | **Optional** | Width of each slider in px                  | `100px`                  |
@@ -109,8 +110,9 @@ buttonText: Home
 #buttonService: cover.close_cover
 #buttonData: 'cover.office_left_blinds,cover.office_right_blinds,cover.basement_shutter'
 countText: 'covers open'
-closedBaseline
+openBaseline: 5
 icon: 'mdi:blinds'
+iconSize: 40px
 panelType: true
 showSidebar: true
 positionHeight: 300px
@@ -158,7 +160,7 @@ Have some issues of displaying on Firefox. Please try with caution!
 
 ## MORE WORKS TO DO
 
-1. Change hard-coded styles and clean codes
+1. Change hard-coded styles and clean codes (done somehow)
 
 2. Remove unnecessary css and js blocks
 
