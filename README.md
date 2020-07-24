@@ -1,5 +1,4 @@
-# Vertical Slider Cover Card by konnected.vn
-(https://konnected.vn -VI)
+# Vertical Slider Cover Card by konnected.vn (https://konnected.vn -VI)
 
 [![GitHub Release][releases-shield]][releases]
 [![License][license-shield]](LICENSE.md)
@@ -7,7 +6,7 @@
 
 ![Project Maintenance][maintenance-shield]
 
-## SCREENTSHOT
+## SCREENSHOTS
 
 Panel View screenshot
 
@@ -66,7 +65,7 @@ Normally, this means `attributes.supported_features` is at least 7 or greater.
 | closedColor       | string  | **Optional** | Color of upper slider bar (~)               | `hsl(0, 0%, 20%)`        |
 | switchColor       | string  | **Optional** | Background color of Stop button (~)         | `sideColor2`             |
 
-## STARTING A NEW CARD FROM vertical-silder-cover-card
+## STARTING A NEW CARD
 
 ### INSTALL USING HACS (recommended)
 
@@ -94,7 +93,7 @@ In Home Assistant Dashboard **Resource**, add resource path /local/vertical-slid
 
 ### ADD NEW CARD
 
-In Lovelace, add new Manual card. Copy sample configuration to replace new card content, adjust entities to fix your Hass.
+In Lovelace, add new Manual card. Replace new card content with sample configuration below. Change the entities.
 
 In View option, check Panel mode if you want do display card in full width.
 
@@ -141,11 +140,6 @@ entities:
 **(2)** openBaseline - some covers stop at position 2 or 1 instead of 0. When set, any cover with current_position
 greater than *openBaseline* will be counted as open.
 
-
-### LAST STEP
-
-Style it using card-mod?
-
 ## ISSUE AND SUGGESTION?
 
 Customize to suit your needs and contribute it back to the community.
@@ -156,7 +150,7 @@ Any suggestion and comment are warmly welcome and appreciated!
 
 ### MIGHT NOT WORK ON FIREFOX
 
-Have some issues of displaying on Firefox. Please try with caution!
+Have some appearance issues on Firefox. Please try with caution!
 
 ## MORE WORKS TO DO
 

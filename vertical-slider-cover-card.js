@@ -57,6 +57,7 @@ class VerticalSliderCoverCard extends LitElement {
     var panelType = this.config.panelType;
     var showSidebar = this.config.showSidebar;
     var titleSize = this.config.titleSize ? this.config.titleSize : "40px";
+    
     return html`
         <ha-card>
         <div class="page" style="background:${background};">
