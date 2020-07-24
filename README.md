@@ -17,12 +17,12 @@ Card screenshot
 ![card screenshot](https://github.com/konnectedvn/lovelace-vertical-slider-cover-card/blob/master/src/konnected_vn_Vertical-Slider-Cover-Card-Normal-Mode-7-2-2020.png?raw=true "Desktop screenshot")
 
 
-Color Guideline
+Color Guidelines
 
 ![card screenshot](https://github.com/konnectedvn/lovelace-vertical-slider-cover-card/blob/master/src/konnected_vn_vertical-slider-cover-card-color-guideline.png?raw=true "Desktop screenshot")
 
 
-Color Picker Helper
+Color Picker Helper (Google)
 
 ![card screenshot](https://github.com/konnectedvn/lovelace-vertical-slider-cover-card/blob/master/src/konnected_vn_color_picker.png?raw=true "Desktop screenshot")
 
