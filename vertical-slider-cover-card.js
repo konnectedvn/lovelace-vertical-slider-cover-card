@@ -6,7 +6,7 @@
  * Based on      : github.com/DBuit/hass-smart-home-panel-card (Thanks to DBuit!)
  */
 
-console.info("%c [konnected.vn] Vertical Slider Cover Card  \n%c Version v0.0.9","color: red; font-weight: bold; background: black", "color: white; font-weight: bold; background: dimgray");
+console.info("%c [konnected.vn] Vertical Slider Cover Card  \n%c Version v0.1.0","color: red; font-weight: bold; background: black", "color: white; font-weight: bold; background: dimgray");
 
 import {
     LitElement,
@@ -112,7 +112,7 @@ class VerticalSliderCoverCard extends LitElement {
                         <div class="toggle" style="--show-switch: ${this._showFlex(showSwitch)};">
                             <input ?checked=${stateObj.state == "open"} type="checkbox" id="toggle${entityCounter}" class="toggle-btn" @change=${e => this._switch(stateObj)} />
                             <label for="toggle${entityCounter}" style="--switch-width: ${switchWidth};--switch-height: ${switchHeight};--switch-color: ${switchColor};--switch-labelSize: ${parseInt(switchWidth.replace(/px/,"")) / 5}px;"><span></span></label>
-                            </div>
+                        </div>
                       </div>
                     </div>
                 `: html``;
@@ -316,18 +316,26 @@ class VerticalSliderCoverCard extends LitElement {
         .page > .main {
           width:100%;
           overflow-x:scroll;
-        }
+          padding-bottom: 0px;
+          -ms-overflow-style: none;  /* IE and Edge */
+  		  scrollbar-width: none;  /* Firefox */
+         }
+        .page > .main::-webkit-scrollbar {
+  		  display: none;
+		}
         .page > .main > .inner-main {
-            display:flex;
-            flex-direction:row;
-            align-items:center;
-            height:100%;
-            margin: auto;
+          display:flex;
+          flex-direction:row;
+          align-items:center;
+          height:100%;
+          margin: auto;
+          padding-right: 0px;
         }
         .page > .main > .inner-main > .cover {
           width: var(--cover-width);
           display:inline-block;
           margin: var(--center-slider);
+          padding-bottom: 0px;
         }
         
         .cover .icon {
@@ -450,11 +458,6 @@ class VerticalSliderCoverCard extends LitElement {
           position: relative;
           top: 0;
         }
-        // .range-holder input[type="range"].on::-webkit-slider-thumb {
-        //     border-color: #1c7ae2;
-        //     box-shadow: -350px 0 0 350px #1c7ae2, inset 0 0 0 80px #FFF;
-        // }
-        
         .switch-holder {
           height: var(--switch-height);
           position:relative;
