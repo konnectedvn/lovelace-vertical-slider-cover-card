@@ -6,7 +6,7 @@
  * Based on      : github.com/DBuit/hass-smart-home-panel-card (Thanks to DBuit!)
  */
 
-console.info("%c [konnected.vn] Vertical Slider Cover Card  \n%c Version v0.1.0","color: red; font-weight: bold; background: black", "color: white; font-weight: bold; background: dimgray");
+console.info("%c [konnected.vn] Vertical Slider Cover Card  \n%c Version v0.1.1","color: red; font-weight: bold; background: black", "color: white; font-weight: bold; background: dimgray");
 
 import {
     LitElement,
@@ -19,12 +19,14 @@ class VerticalSliderCoverCard extends LitElement {
     return {
       hass: {},
       config: {},
-      active: {}
+      active: {},
+      sliderVal: { type: Array }
     };
   }
   
   constructor() {
     super();
+    this.sliderVal = [];
   }
   
   render() {
@@ -81,7 +83,7 @@ class VerticalSliderCoverCard extends LitElement {
           <div class="main">
             <div class="inner-main">
             ${this.config.entities.map(ent => {
-                entityCounter++;
+            	entityCounter++;
                 var switchValue = 0;
                 const stateObj = this.hass.states[ent.entity];
                 switch(stateObj.state) {
@@ -99,9 +101,9 @@ class VerticalSliderCoverCard extends LitElement {
                       <div class="cover-slider">
                         <p class="cover-name" style="--cover-fontSize: ${this._coverNameFont(positionWidth,gapWidth)}px;">${ent.name || stateObj.attributes.friendly_name}</p>
                         ${stateObj.attributes.supported_features > 6 ? html`
-                            <p class="cover-position" style="--cover-fontSize: ${parseInt(positionWidth.replace(/px/,"")) / 4 - (parseInt(positionWidth.replace(/px/,"")) - 60) / 4}px;">${stateObj.state === "closed" ? 0 : Math.round(stateObj.attributes.current_position)}</p>
+                            <p class="cover-position" style="--cover-fontSize: ${parseInt(positionWidth.replace(/px/,"")) / 4 - (parseInt(positionWidth.replace(/px/,"")) - 60) / 4}px;">${this._coverPosition(stateObj.state, stateObj.attributes.current_position, stateObj.entity_id)}</p>
                             <div class="range-holder" style="--slider-height: ${positionHeight};--closed-color: ${closedColor};">
-                              <input type="range" class="${stateObj.state}" style="--slider-width: ${positionWidth};--slider-height: ${positionHeight};--closed-color: ${closedColor};--open-color: ${openColor};" .value="${stateObj.state === "closed" ? 0 : Math.round(stateObj.attributes.current_position)}" @change=${e => this._setPosition(stateObj, e.target.value)}>
+                              <input type="range" class="${stateObj.state}" style="--slider-width: ${positionWidth};--slider-height: ${positionHeight};--closed-color: ${closedColor};--open-color: ${openColor};" .value="${stateObj.state === "closed" ? 0 : Math.round(stateObj.attributes.current_position)}" @input=${e => this._sliderChange(e.target.value, stateObj.entity_id)}} @change=${e => this._setPosition(stateObj.entity_id, e.target.value)}>
                             </div>
                         ` : html`
                             <h4>${stateObj.state}</h4>
@@ -125,12 +127,28 @@ class VerticalSliderCoverCard extends LitElement {
   }
   
   updated() {}
-
-  _setPosition(state, value) {
-    this.hass.callService("cover", "set_cover_position", {
-        entity_id: state.entity_id,
-        position: value
-    });
+  
+  _sliderChange(value, entity_id){
+    this.sliderVal[entity_id] = {val: value, active: true};
+    this.requestUpdate();
+  }
+  
+  _coverPosition(coverState, coverPos, entity_id){
+  	  if (coverState === "closed") {
+      		return '0';
+      } else if (typeof this.sliderVal[entity_id] === 'undefined' || !this.sliderVal[entity_id]['active']) {
+        	return Math.round(coverPos);
+	  } else {
+	  	    return this.sliderVal[entity_id]['val'];
+	  }
+  }
+  
+  _setPosition(entity_id, value) {
+      this.hass.callService("cover", "set_cover_position", {
+          entity_id: entity_id,
+          position: value
+      });
+      this.sliderVal[entity_id]['active'] = false;
   }
   
   _stateCount(baseline) {
@@ -147,7 +165,7 @@ class VerticalSliderCoverCard extends LitElement {
   }
   
   _panelSize(panelType) {
-    var sideWidth = 40;
+    let sideWidth = 40;
     if (panelType === true) {
 	  sideWidth = 30;
     }
@@ -170,8 +188,8 @@ class VerticalSliderCoverCard extends LitElement {
   }
   
   _buttonFont(titleSize,buttonText) {
-    var fieldSize = parseInt(titleSize.replace(/px/,"")) * this.config.title.length;
-    var buttonSize = fieldSize / buttonText.length;
+    let fieldSize = parseInt(titleSize.replace(/px/,"")) * this.config.title.length;
+    let buttonSize = fieldSize / buttonText.length;
     return buttonSize * 0.5;
   }
   
@@ -184,15 +202,15 @@ class VerticalSliderCoverCard extends LitElement {
   }
   
   _coverNameFont(positionWidth, gapWidth) {
-    var maxLength = 0;
+    let maxLength = 0;
     this.config.entities.map(ent => {
           const stateObj = this.hass.states[ent.entity];
-          var name = ent.name || stateObj.attributes.friendly_name;
+          let name = ent.name || stateObj.attributes.friendly_name;
           if(name.length > maxLength) {
               maxLength = name.length;
           }
       })
-    var fontsize = parseInt(positionWidth.replace(/px/,""));
+    let fontsize = parseInt(positionWidth.replace(/px/,""));
     if (parseInt(gapWidth.replace(/px/,"")) > 50) {
         fontsize = fontsize + (parseInt(gapWidth.replace(/px/,"")) / 2);
     } else {
@@ -211,8 +229,8 @@ class VerticalSliderCoverCard extends LitElement {
     if (service.length === 0) {
       window.location.href = path;
     } else {
-      var domain = service.split(".",2)[0];
-      var ser = service.split(".",2)[1];
+      let domain = service.split(".",2)[0];
+      let ser = service.split(".",2)[1];
       this.hass.callService(domain,ser, {
         entity_id: data
       });
@@ -246,7 +264,6 @@ class VerticalSliderCoverCard extends LitElement {
           width: 100%;
           height: 100%;
           position: absolute;
-          border-radius: 0px;
         }
         ha-card {
       	  overflow: hidden;
@@ -307,7 +324,7 @@ class VerticalSliderCoverCard extends LitElement {
           color:#FFF;
           background:transparent;
           font-size:var(--button-size);
-          border-radius:4px;
+          border-radius: 4px;
           width:100%;
           display:block;
           padding: 10px 0;
@@ -458,6 +475,11 @@ class VerticalSliderCoverCard extends LitElement {
           position: relative;
           top: 0;
         }
+        // .range-holder input[type="range"].on::-webkit-slider-thumb {
+        //     border-color: #1c7ae2;
+        //     box-shadow: -350px 0 0 350px #1c7ae2, inset 0 0 0 80px #FFF;
+        // }
+        
         .switch-holder {
           height: var(--switch-height);
           position:relative;
