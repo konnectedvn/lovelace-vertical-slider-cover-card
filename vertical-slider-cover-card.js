@@ -32,15 +32,18 @@ class VerticalSliderCoverCard extends LitElement {
   render() {
     var icon = this.config.icon ? this.config.icon : "mdi:blinds";
     var iconSize = this.config.iconSize ? this.config.iconSize: "28px";
+    var iconColor = this.config.iconColor ? this.config.iconColor: '#FFF';
 
     var positionWidth = this.config.positionWidth ? this.config.positionWidth : "100px";
     var positionHeight = this.config.positionHeight ? this.config.positionHeight : "300px";
     var switchWidth = this.config.switchWidth ? this.config.switchWidth : positionWidth;
     var switchHeight = this.config.switchHeight ? this.config.switchHeight : switchWidth;
     var showSwitch = this.config.showSwitch;
+    var switchFontColor = this.config.switchFontColor ? this.config.switchFontColor: '#FFF';
     var gapWidth = this.config.gapWidth ? this.config.gapWidth : "50px";
     
     var countText = this.config.countText ? this.config.countText : "covers open";
+    var countTextFontColor = this.config.countTextFontColor ? this.config.countTextFontColor : '#FFF';
     var openBaseline = this.config.closedBaseline ? this.config.closedBaseline : 0;
     var entityCounter = 0;
     
@@ -49,6 +52,7 @@ class VerticalSliderCoverCard extends LitElement {
     var buttonPath = this.config.buttonPath ? this.config.buttonPath : "/lovelace/0";
     var buttonService = this.config.buttonService ? this.config.buttonService: "";
     var buttonData = this.config.buttonData ? this.config.buttonData : "";
+    var buttonFontColor = this.config.buttonFontColor ? this.config.buttonFontColor: '#FFF';
     
     var background = this.config.background ? this.config.background : "transparent";
     var sideColor1 = this.config.sideColor1 ? this.config.sideColor1 : '#ffcccc';
@@ -59,6 +63,7 @@ class VerticalSliderCoverCard extends LitElement {
     var panelType = this.config.panelType;
     var showSidebar = this.config.showSidebar;
     var titleSize = this.config.titleSize ? this.config.titleSize : "40px";
+    var titleFontColor = this.config.titleFontColor ? this.config.titleFontColor : '#FFF';
     
     return html`
         <ha-card>
@@ -70,13 +75,13 @@ class VerticalSliderCoverCard extends LitElement {
             </div>
             <div class="center">
               <div class="icon">
-                <ha-icon style="--mdc-icon-size:${iconSize};" icon="${icon}" />
+                <ha-icon style="--mdc-icon-size:${iconSize};--icon-color:${iconColor};" icon="${icon}" />
               </div>
-              <h1 style="--title-size:${titleSize};">${this.config.title}</h1>
-              <h3>${this._stateCount(openBaseline)} ${countText}</h3>
+              <h1 style="--title-size:${titleSize};--title-font-color:${titleFontColor};">${this.config.title}</h1>
+              <h3 style="--count-font-color:{$countTextFontColor};">${this._stateCount(openBaseline)} ${countText}</h3>
             </div>
             <div class="bottom">
-                ${showButton ? html`<button class="back-btn" style="--button-size:${this._buttonFont(titleSize,buttonText)}px;" @click=${e => this._navigate(buttonPath,buttonService,buttonData)}>${buttonText}</button>` : html``}
+                ${showButton ? html`<button class="back-btn" style="--button-size:${this._buttonFont(titleSize,buttonText)}px;--button-font-color:${buttonFontColor};" @click=${e => this._navigate(buttonPath,buttonService,buttonData)}>${buttonText}</button>` : html``}
             </div>
           </div>
           
@@ -113,7 +118,7 @@ class VerticalSliderCoverCard extends LitElement {
                         `}
                         <div class="toggle" style="--show-switch: ${this._showFlex(showSwitch)};">
                             <input ?checked=${stateObj.state == "open"} type="checkbox" id="toggle${entityCounter}" class="toggle-btn" @change=${e => this._switch(stateObj)} />
-                            <label for="toggle${entityCounter}" style="--switch-width: ${switchWidth};--switch-height: ${switchHeight};--switch-color: ${switchColor};--switch-labelSize: ${parseInt(switchWidth.replace(/px/,"")) / 5}px;"><span></span></label>
+                            <label for="toggle${entityCounter}" style="--switch-width: ${switchWidth};--switch-height: ${switchHeight};--switch-font-color: ${switchFontColor};--switch-color: ${switchColor};--switch-labelSize: ${parseInt(switchWidth.replace(/px/,"")) / 5}px;"><span></span></label>
                         </div>
                       </div>
                     </div>
@@ -299,17 +304,17 @@ class VerticalSliderCoverCard extends LitElement {
           text-align:center;
         }
         .side .center .icon ha-icon {
-          color:#FFF;
+          color:var(--icon-color);
         }
         .side .center  h1 {
-          color:#FFF;
+          color:var(--title-font-color);
           margin:10px 0 0 5px;
           font-weight:400;
           font-size: var(--title-size);
           line-height: var(--title-size);
         }
         .side .center  h3 {
-          color:#FFF;
+          color:var(--count-font-color);
           margin:5px 0 5px 0;
           font-size: 120%;
           font-weight: 400;
@@ -320,8 +325,8 @@ class VerticalSliderCoverCard extends LitElement {
         }
         
         .back-btn {
-          border:2px solid #FFF;
-          color:#FFF;
+          border:2px solid var(--button-font-color);
+          color:var(--button-font-color);
           background:transparent;
           font-size:var(--button-size);
           border-radius: 4px;
@@ -501,6 +506,7 @@ class VerticalSliderCoverCard extends LitElement {
           height: calc(var(--switch-width) - 20px);
           -webkit-appearance: none;
           background-color: var(--switch-color);
+          color: var(--switch-font-color);
           padding: 10px;
           position: absolute;
           top: calc(50% - (var(--switch-width) / 2));
@@ -519,6 +525,7 @@ class VerticalSliderCoverCard extends LitElement {
           height: calc(var(--switch-width) - 20px);
           cursor: ew-resize;
           background: var(--switch-color);
+          color: var(--switch-font-color);
           transition: box-shadow 0.2s ease-in-out;
           box-shadow: -340px 0 0 350px #4d4d4d, inset 0 0 0 80px #969696;
           position: relative;
@@ -548,7 +555,7 @@ class VerticalSliderCoverCard extends LitElement {
           line-height: var(--switch-height);
           cursor: pointer;
           border-radius: 4px;
-          color: #FFF;
+          color: var(--switch-font-color);
           display:block;
           font-size:var(--switch-labelSize);
         }
