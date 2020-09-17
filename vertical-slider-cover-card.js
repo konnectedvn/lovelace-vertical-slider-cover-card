@@ -307,6 +307,7 @@ class VerticalSliderCoverCard extends LitElement {
           font-weight:400;
           font-size: var(--title-size);
           line-height: var(--title-size);
+          text-align: center;
         }
         .side .center  h3 {
           color:#FFF;
@@ -314,6 +315,7 @@ class VerticalSliderCoverCard extends LitElement {
           font-size: 120%;
           font-weight: 400;
           line-height: 100%;
+          text-align: center;
         }
         
         .side .bottom {
