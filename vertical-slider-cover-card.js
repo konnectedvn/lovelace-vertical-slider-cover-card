@@ -78,7 +78,7 @@ class VerticalSliderCoverCard extends LitElement {
                 <ha-icon style="--mdc-icon-size:${iconSize};--icon-color:${iconColor};" icon="${icon}" />
               </div>
               <h1 style="--title-size:${titleSize};--title-font-color:${titleFontColor};">${this.config.title}</h1>
-              <h3 style="--count-font-color:{$countTextFontColor};">${this._stateCount(openBaseline)} ${countText}</h3>
+              <h3 style="--count-font-color:${countTextFontColor};">${this._stateCount(openBaseline)} ${countText}</h3>
             </div>
             <div class="bottom">
                 ${showButton ? html`<button class="back-btn" style="--button-size:${this._buttonFont(titleSize,buttonText)}px;--button-font-color:${buttonFontColor};" @click=${e => this._navigate(buttonPath,buttonService,buttonData)}>${buttonText}</button>` : html``}
