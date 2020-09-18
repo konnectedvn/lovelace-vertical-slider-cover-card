@@ -30,20 +30,22 @@ class VerticalSliderCoverCard extends LitElement {
   }
   
   render() {
+    var primaryTextColor = window.getComputedStyle(this).getPropertyValue("--primary-text-color");
+
     var icon = this.config.icon ? this.config.icon : "mdi:blinds";
     var iconSize = this.config.iconSize ? this.config.iconSize: "28px";
-    var iconColor = this.config.iconColor ? this.config.iconColor: '#FFF';
+    var iconColor = this.config.iconColor ? this.config.iconColor : primaryTextColor;
 
     var positionWidth = this.config.positionWidth ? this.config.positionWidth : "100px";
     var positionHeight = this.config.positionHeight ? this.config.positionHeight : "300px";
     var switchWidth = this.config.switchWidth ? this.config.switchWidth : positionWidth;
     var switchHeight = this.config.switchHeight ? this.config.switchHeight : switchWidth;
     var showSwitch = this.config.showSwitch;
-    var switchFontColor = this.config.switchFontColor ? this.config.switchFontColor: '#FFF';
+    var switchFontColor = this.config.switchFontColor ? this.config.switchFontColor : primaryTextColor;
     var gapWidth = this.config.gapWidth ? this.config.gapWidth : "50px";
     
     var countText = this.config.countText ? this.config.countText : "covers open";
-    var countTextFontColor = this.config.countTextFontColor ? this.config.countTextFontColor : '#FFF';
+    var countTextFontColor = this.config.countTextFontColor ? this.config.countTextFontColor : primaryTextColor;
     var openBaseline = this.config.closedBaseline ? this.config.closedBaseline : 0;
     var entityCounter = 0;
     
@@ -52,7 +54,7 @@ class VerticalSliderCoverCard extends LitElement {
     var buttonPath = this.config.buttonPath ? this.config.buttonPath : "/lovelace/0";
     var buttonService = this.config.buttonService ? this.config.buttonService: "";
     var buttonData = this.config.buttonData ? this.config.buttonData : "";
-    var buttonFontColor = this.config.buttonFontColor ? this.config.buttonFontColor: '#FFF';
+    var buttonFontColor = this.config.buttonFontColor ? this.config.buttonFontColor : primaryTextColor;
     
     var background = this.config.background ? this.config.background : "transparent";
     var sideColor1 = this.config.sideColor1 ? this.config.sideColor1 : '#ffcccc';
@@ -63,7 +65,7 @@ class VerticalSliderCoverCard extends LitElement {
     var panelType = this.config.panelType;
     var showSidebar = this.config.showSidebar;
     var titleSize = this.config.titleSize ? this.config.titleSize : "40px";
-    var titleFontColor = this.config.titleFontColor ? this.config.titleFontColor : '#FFF';
+    var titleFontColor = this.config.titleFontColor ? this.config.titleFontColor : primaryTextColor;
     
     return html`
         <ha-card>
