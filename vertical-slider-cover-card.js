@@ -110,7 +110,7 @@ class VerticalSliderCoverCard extends LitElement {
                         ${stateObj.attributes.supported_features > 6 ? html`
                             <p class="cover-position" style="--cover-fontSize: ${parseInt(positionWidth.replace(/px/,"")) / 4 - (parseInt(positionWidth.replace(/px/,"")) - 60) / 4}px;">${this._coverPosition(stateObj.state, stateObj.attributes.current_position, stateObj.entity_id)}</p>
                             <div class="range-holder" style="--slider-height: ${positionHeight};--closed-color: ${closedColor};">
-                              <input type="range" class="${stateObj.state}" style="--slider-width: ${positionWidth};--slider-height: ${positionHeight};--closed-color: ${closedColor};--open-color: ${openColor};" .value="${stateObj.state === "closed" ? 0 : Math.round(stateObj.attributes.current_position)}" @input=${e => this._sliderChange(e.target.value, stateObj.entity_id)}} @change=${e => this._setPosition(stateObj.entity_id, e.target.value)}>
+                              <input type="range" class="${stateObj.state}" style="--slider-width: ${positionWidth};--slider-height: ${positionHeight};--closed-color: ${closedColor};--open-color: ${openColor};" .value="${stateObj.state === "closed" ? 0 : Math.round(stateObj.attributes.current_position)}" @input=${e => this._sliderChange(e.target.value, stateObj.entity_id)}} @change=${e => this._setPosition(stateObj.entity_id, e.target.value, ent.script)}>
                             </div>
                         ` : html`
                             <h4>${stateObj.state}</h4>
@@ -150,12 +150,21 @@ class VerticalSliderCoverCard extends LitElement {
 	  }
   }
   
-  _setPosition(entity_id, value) {
+  _setPosition(entity_id, value, script) {
+  	  if (this.hass.states[entity_id].attributes.current_position === value) {
+  	  	  return;
+  	  }
       this.hass.callService("cover", "set_cover_position", {
           entity_id: entity_id,
           position: value
       });
       this.sliderVal[entity_id]['active'] = false;
+      console.log(script);
+      if (script) {
+        this.hass.callService("script", "turn_on", {
+    		entity_id: script
+        });
+      }
   }
   
   _stateCount(baseline) {
