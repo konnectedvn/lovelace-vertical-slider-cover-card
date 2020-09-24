@@ -35,44 +35,45 @@ Normally, this means `attributes.supported_features` is at least 7 or greater.
 
 # Options
 
-| Name                         | Type    | Requirement  | Description                                            | Default                |
-| ---------------------------- | ------- | ------------ | ------------------------------------------------------ | ---------------------- |
-| type                         | string  | **Required** | `custom:vertical-slider-cover-card`                    |                        |
-| title                        | string  | **Required** | Title                                                  |                        |
-| entities                     | list    | **Required** | Cover entities to show as slider in card               |                        |
-| &nbsp;&nbsp;- entity         | string  | **Required** | Cover's `entity_id`                                    |                        |
-| &nbsp;&nbsp;&nbsp;&nbsp;name | string  | **Optional** | Custom name for every cover                            | `friendly_name`        |
-| **Sidebar** area             |         |              |                                                        |                        |
-| showSidebar                  | boolean | **Optional** | Show or hide side bar (1)                              | `true`                 |
-| sideColor1                   | string  | **Optional** | Upper-left color of sidebar (~)                        | `#ffcccc`              |
-| sideColor2                   | string  | **Optional** | Lower-right color of sidebar (~)                       | `#b30000`              |
-| icon                         | string  | **Optional** | Icon to show on side bar                               | `mdi:blinds`           |
-| iconSize                     | string  | **Optional** | Font size of icon on side bar                          | `28px`                 |
-| iconColor                    | string  | **Optional** | Color of icon on side bar                              | theme                  |
-| titleSize                    | string  | **Optional** | Font size of title                                     | `40px`                 |
-| titleFontColor               | string  | **Optional** | Font color of title                                    | theme                  |
-| countText                    | string  | **Optional** | Text to show follow number of covers open              | `covers open`          |
-| countTextFontColor           | string  | **Optional** | Font color of text to show follow number               | theme                  |
-| showButton                   | boolean | **Optional** | Show Home button at bottom of side bar                 | `false`                |
-| buttonText                   | string  | **Optional** | Text to show on button                                 | `Home`                 |
-| buttonFontColor              | string  | **Optional** | Font color of button                                   | theme                  |
-| buttonPath                   | string  | **Optional** | Path of Lovelace View when click button                | `/lovelace/0`          |
-| buttonService                | string  | **Optional** | Service to call (overide buttonPath if any)            | `null`                 |
-| buttonData                   | string  | **Optional** | Service data to call                                   | `null`                 |
-| **Cover** area               |         |              |                                                        |                        |
-| background                   | string  | **Optional** | Card background in hex (# or hsl with opacity)         | `transparent`          |
-| panelType                    | boolean | **Optional** | Try to center all sliders (`gapWidth` will be ignored) | `true`                 |
-| gapWidth                     | string  | **Optional** | Width of Space between 2 cover sliders                 | `50px`                 |
-| positionHeight               | string  | **Optional** | Height of each slider in px                            | `300px`                |
-| positionWidth                | string  | **Optional** | Width of each slider in px                             | `100px`                |
-| openColor                    | string  | **Optional** | Color of lower slider bar (~)                          | `hsl(0, 0%, 90%, 0.8)` |
-| closedColor                  | string  | **Optional** | Color of upper slider bar (~)                          | `hsl(0, 0%, 20%)`      |
-| openBaseline                 | integer | **Optional** | (2)                                                    | `0`                    |
-| showSwitch                   | boolean | **Optional** | Show STOP switch under every covers                    | `true`                 |
-| switchWidth                  | string  | **Optional** | Width of Stop button at bottom                         | `positionWidth`        |
-| switchHeight                 | string  | **Optional** | Height of Stop button at bottom                        | `switchWidth`          |
-| switchColor                  | string  | **Optional** | Background color of Stop button (~)                    | `sideColor2`           |
-| switchFontColor              | string  | **Optional** | Font color of Stop button at bottom                    | theme                  |
+| Name                           | Type    | Requirement  | Description                                            | Default                |
+| ------------------------------ | ------- | ------------ | ------------------------------------------------------ | ---------------------- |
+| type                           | string  | **Required** | `custom:vertical-slider-cover-card`                    |                        |
+| title                          | string  | **Required** | Title                                                  |                        |
+| entities                       | list    | **Required** | Cover entities to show as slider in card               |                        |
+| &nbsp;&nbsp;- entity           | string  | **Required** | Cover's `entity_id`                                    | &nbsp;                 |
+| &nbsp;&nbsp;&nbsp;&nbsp;name   | string  | **Optional** | Custom name for every cover                            | `friendly_name`        |
+| &nbsp;&nbsp;&nbsp;&nbsp;script | string  | **Optional** | Call additional script on every position change (3)    | `null`                 |
+| **Sidebar** area               |         |              |                                                        |                        |
+| showSidebar                    | boolean | **Optional** | Show or hide side bar (1)                              | `true`                 |
+| sideColor1                     | string  | **Optional** | Upper-left color of sidebar (~)                        | `#ffcccc`              |
+| sideColor2                     | string  | **Optional** | Lower-right color of sidebar (~)                       | `#b30000`              |
+| icon                           | string  | **Optional** | Icon to show on side bar                               | `mdi:blinds`           |
+| iconSize                       | string  | **Optional** | Font size of icon on side bar                          | `28px`                 |
+| iconColor                      | string  | **Optional** | Color of icon on side bar                              | theme                  |
+| titleSize                      | string  | **Optional** | Font size of title                                     | `40px`                 |
+| titleFontColor                 | string  | **Optional** | Font color of title                                    | theme                  |
+| countText                      | string  | **Optional** | Text to show follow number of covers open              | `covers open`          |
+| countTextFontColor             | string  | **Optional** | Font color of text to show follow number               | theme                  |
+| showButton                     | boolean | **Optional** | Show Home button at bottom of side bar                 | `false`                |
+| buttonText                     | string  | **Optional** | Text to show on button                                 | `Home`                 |
+| buttonFontColor                | string  | **Optional** | Font color of button                                   | theme                  |
+| buttonPath                     | string  | **Optional** | Path of Lovelace View when click button                | `/lovelace/0`          |
+| buttonService                  | string  | **Optional** | Service to call (overide buttonPath if any)            | `null`                 |
+| buttonData                     | string  | **Optional** | Service data to call                                   | `null`                 |
+| **Cover** area                 |         |              |                                                        |                        |
+| background                     | string  | **Optional** | Card background in hex (# or hsl with opacity)         | `transparent`          |
+| panelType                      | boolean | **Optional** | Try to center all sliders (`gapWidth` will be ignored) | `true`                 |
+| gapWidth                       | string  | **Optional** | Width of Space between 2 cover sliders                 | `50px`                 |
+| positionHeight                 | string  | **Optional** | Height of each slider in px                            | `300px`                |
+| positionWidth                  | string  | **Optional** | Width of each slider in px                             | `100px`                |
+| openColor                      | string  | **Optional** | Color of lower slider bar (~)                          | `hsl(0, 0%, 90%, 0.8)` |
+| closedColor                    | string  | **Optional** | Color of upper slider bar (~)                          | `hsl(0, 0%, 20%)`      |
+| openBaseline                   | integer | **Optional** | (2)                                                    | `0`                    |
+| showSwitch                     | boolean | **Optional** | Show STOP switch under every covers                    | `true`                 |
+| switchWidth                    | string  | **Optional** | Width of Stop button at bottom                         | `positionWidth`        |
+| switchHeight                   | string  | **Optional** | Height of Stop button at bottom                        | `switchWidth`          |
+| switchColor                    | string  | **Optional** | Background color of Stop button (~)                    | `sideColor2`           |
+| switchFontColor                | string  | **Optional** | Font color of Stop button at bottom                    | theme                  |
 
 ## STARTING A NEW CARD
 
@@ -154,12 +155,39 @@ entities:
     name: Right Blinds
   - entity: cover.basement_shutter
     name: Basement Shutter
+    script: script.disable_alarm_for_5_min
 ```
 
 **(1)** You might want to hide side bar (showSidebar: false) to have 2 or 3 covers in same card on mobile.
 
 **(2)** openBaseline - some covers stop at position 2 or 1 instead of 0. When set, any cover with current_position
 greater than *openBaseline* will be counted as open.
+
+**(3)** when declared, script will be called *simutaneously* with `cover.set_position` service (which is used to set cover to desired position). You might want to use this script option to, for example, temporarily disable mid-night open door alarm.
+
+Example of script:
+
+```yaml
+disable_alarm_for_5_min:
+  alias: Disarm alarm panel for 5 mins
+  mode: single
+  sequence: #Home Assistant >= 0.113
+  #try to save current state of alarm_panel
+  - service: scene.create
+    data:
+      scene_id: door_alarm_panel_state
+      snapshot_entities:
+      - alarm_control_panel.door_alarm
+  - data: {}
+    entity_id: alarm_control_panel.door_alarm
+    service: alarm_control_panel.alarm_disarm
+  - delay: '00:05:00'
+  #set it back
+  - scene: scene.door_alarm_panel_state
+  icon: mdi:alarm-note-off
+```
+
+
 
 ## ISSUE AND SUGGESTION?
 

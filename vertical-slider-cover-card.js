@@ -6,7 +6,7 @@
  * Based on      : github.com/DBuit/hass-smart-home-panel-card (Thanks to DBuit!)
  */
 
-console.info("%c [konnected.vn] Vertical Slider Cover Card  \n%c Version v0.1.1","color: red; font-weight: bold; background: black", "color: white; font-weight: bold; background: dimgray");
+console.info("%c [konnected.vn] Vertical Slider Cover Card  \n%c Version v0.1.2","color: red; font-weight: bold; background: black", "color: white; font-weight: bold; background: dimgray");
 
 import {
     LitElement,
@@ -159,7 +159,6 @@ class VerticalSliderCoverCard extends LitElement {
           position: value
       });
       this.sliderVal[entity_id]['active'] = false;
-      console.log(script);
       if (script) {
         this.hass.callService("script", "turn_on", {
     		entity_id: script
