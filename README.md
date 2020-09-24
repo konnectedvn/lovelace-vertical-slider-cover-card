@@ -35,40 +35,44 @@ Normally, this means `attributes.supported_features` is at least 7 or greater.
 
 # Options
 
-| Name               | Type    | Requirement  | Description                                 | Default                  |
-| ------------------ | ------- | ------------ | ------------------------------------------- | ------------------------ |
-| type               | string  | **Required** | `custom:vertical-slider-cover-card`         |                          |
-| title              | string  | **Required** | Title                                       |                          |
-| entities           | list    | **Required** | Cover entities to show as slider in card    |                          |
-| icon               | string  | **Optional** | Icon to show on side bar                    | `mdi:blinds`             |
-| iconSize           | string  | **Optional** | Font size of icon on side bar               | `28px`                   |
-| iconColor          | string  | **Optional** | Color of icon on side bar                   | '#FFF'                   |
-| titleSize          | string  | **Optional** | Font size of title                          | `40px`                   |
-| titleFontColor     | string  | **Optional** | Font color of title                         | '#FFF'                   |
-| positionHeight     | string  | **Optional** | Height of each slider in px                 | `300px`                  |
-| positionWidth      | string  | **Optional** | Width of each slider in px                  | `100px`                  |
-| switchWidth        | string  | **Optional** | Width of Stop button at bottom              | `positionWidth`          |
-| switchHeight       | string  | **Optional** | Height of Stop button at bottom             | `switchWidth`            |
-| switchFontColor    | string  | **Optional** | Font color of Stop button at bottom         | '#FFF'                   |
-| showSwitch         | boolean | **Optional** | Show STOP switch under every covers         | `true`                   |
-| panelType          | boolean | **Optional** | Try to center all sliders (gapWidth ignored)| `true`                   |
-| showSidebar        | boolean | **Optional** | Show or hide side bar (1)                   | `true`                   |
-| gapWidth           | string  | **Optional** | Width of Space between 2 cover sliders      | `50px`                   |
-| showButton         | boolean | **Optional** | Show Home button at bottom of side bar      | `false`                  |
-| buttonText         | string  | **Optional** | Text to show on button                      | `Home`                   |
-| buttonPath         | string  | **Optional** | Path of Lovelace View when click button     | `/lovelace/0`            |
-| buttonService      | string  | **Optional** | Service to call (overide buttonPath if any) | `null`                   |
-| buttonData         | string  | **Optional** | Service data to call                        | `null`                   |
-| buttonFontColor    | string  | **Optional** | Font color of button                        | '#FFF'                   |
-| countText          | string  | **Optional** | Text to show follow number of covers open   | `covers open`            |
-| countTextFontColor | string  | **Optional** | Font color of text to show follow number    | '#FFF'                   |
-| openBaseline       | integer | **Optional** | (2)                                         | `0`                      |
-| background         | string  | **Optional** | Background in hex (# or hsl with opacity)   | `transparent`            |
-| sideColor1         | string  | **Optional** | Upper-left color of sidebar (~)             | `#ffcccc`                |
-| sideColor2         | string  | **Optional** | Lower-right color of sidebar (~)            | `#b30000`                |
-| openColor          | string  | **Optional** | Color of lower slider bar (~)               | `hsl(0, 0%, 90%, 0.8)`   |
-| closedColor        | string  | **Optional** | Color of upper slider bar (~)               | `hsl(0, 0%, 20%)`        |
-| switchColor        | string  | **Optional** | Background color of Stop button (~)         | `sideColor2`             |
+| Name               | Type    | Requirement  | Description                                            | Default                |
+| ------------------ | ------- | ------------ | ------------------------------------------------------ | ---------------------- |
+| type               | string  | **Required** | `custom:vertical-slider-cover-card`                    |                        |
+| title              | string  | **Required** | Title                                                  |                        |
+| entities           | list    | **Required** | Cover entities to show as slider in card               |                        |
+| - entity           | string  | **Required** | Cover's `entity_id`                                    |                        |
+| name               | string  | **Optional** | Custom name for every cover                            | `friendly_name`        |
+| **Sidebar** area   |         |              |                                                        |                        |
+| showSidebar        | boolean | **Optional** | Show or hide side bar (1)                              | `true`                 |
+| sideColor1         | string  | **Optional** | Upper-left color of sidebar (~)                        | `#ffcccc`              |
+| sideColor2         | string  | **Optional** | Lower-right color of sidebar (~)                       | `#b30000`              |
+| icon               | string  | **Optional** | Icon to show on side bar                               | `mdi:blinds`           |
+| iconSize           | string  | **Optional** | Font size of icon on side bar                          | `28px`                 |
+| iconColor          | string  | **Optional** | Color of icon on side bar                              | theme                  |
+| titleSize          | string  | **Optional** | Font size of title                                     | `40px`                 |
+| titleFontColor     | string  | **Optional** | Font color of title                                    | theme                  |
+| countText          | string  | **Optional** | Text to show follow number of covers open              | `covers open`          |
+| countTextFontColor | string  | **Optional** | Font color of text to show follow number               | theme                  |
+| showButton         | boolean | **Optional** | Show Home button at bottom of side bar                 | `false`                |
+| buttonText         | string  | **Optional** | Text to show on button                                 | `Home`                 |
+| buttonFontColor    | string  | **Optional** | Font color of button                                   | theme                  |
+| buttonPath         | string  | **Optional** | Path of Lovelace View when click button                | `/lovelace/0`          |
+| buttonService      | string  | **Optional** | Service to call (overide buttonPath if any)            | `null`                 |
+| buttonData         | string  | **Optional** | Service data to call                                   | `null`                 |
+| **Cover** area     |         |              |                                                        |                        |
+| background         | string  | **Optional** | Card background in hex (# or hsl with opacity)         | `transparent`          |
+| panelType          | boolean | **Optional** | Try to center all sliders (`gapWidth` will be ignored) | `true`                 |
+| gapWidth           | string  | **Optional** | Width of Space between 2 cover sliders                 | `50px`                 |
+| positionHeight     | string  | **Optional** | Height of each slider in px                            | `300px`                |
+| positionWidth      | string  | **Optional** | Width of each slider in px                             | `100px`                |
+| openColor          | string  | **Optional** | Color of lower slider bar (~)                          | `hsl(0, 0%, 90%, 0.8)` |
+| closedColor        | string  | **Optional** | Color of upper slider bar (~)                          | `hsl(0, 0%, 20%)`      |
+| openBaseline       | integer | **Optional** | (2)                                                    | `0`                    |
+| showSwitch         | boolean | **Optional** | Show STOP switch under every covers                    | `true`                 |
+| switchWidth        | string  | **Optional** | Width of Stop button at bottom                         | `positionWidth`        |
+| switchHeight       | string  | **Optional** | Height of Stop button at bottom                        | `switchWidth`          |
+| switchColor        | string  | **Optional** | Background color of Stop button (~)                    | `sideColor2`           |
+| switchFontColor    | string  | **Optional** | Font color of Stop button at bottom                    | theme                  |
 
 ## STARTING A NEW CARD
 
@@ -103,7 +107,19 @@ In Lovelace, add new Manual card. Replace new card content with sample configura
 In View option, check Panel mode if you want do display card in full width.
 
 #example configuration
+
+##minimum configuration
+
+```yaml
+type: 'custom:vertical-slider-cover-card'
+title: Garage
+entities:
+- entity: cover.garage_shutter
 ```
+
+##more customized
+
+```yaml
 type: 'custom:vertical-slider-cover-card'
 background: 'rgba(0, 0, 0, 0.4)'
 showButton: true
