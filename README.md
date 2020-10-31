@@ -55,6 +55,7 @@ Normally, this means `attributes.supported_features` is at least 7 or greater.
 | countText                      | string  | **Optional** | Text to show follow number of covers open              | `covers open`          |
 | countTextFontColor             | string  | **Optional** | Font color of text to show follow number               | theme                  |
 | showButton                     | boolean | **Optional** | Show Home button at bottom of side bar                 | `false`                |
+| closedBaseline                 | byte    | **Optional** | Cover with positon higher is counted as open           | `0`                |
 | buttonText                     | string  | **Optional** | Text to show on button                                 | `Home`                 |
 | buttonFontColor                | string  | **Optional** | Font color of button                                   | theme                  |
 | buttonPath                     | string  | **Optional** | Path of Lovelace View when click button                | `/lovelace/0`          |
@@ -131,7 +132,7 @@ buttonText: Home
 #buttonService: cover.close_cover
 #buttonData: 'cover.office_left_blinds,cover.office_right_blinds,cover.basement_shutter'
 countText: 'covers open'
-openBaseline: 5
+closedBaseline: 5
 icon: 'mdi:blinds'
 iconSize: 40px
 panelType: true
