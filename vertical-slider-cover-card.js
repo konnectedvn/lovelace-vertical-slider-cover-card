@@ -30,7 +30,7 @@ class VerticalSliderCoverCard extends LitElement {
   }
   
   render() {
-    var primaryTextColor = window.getComputedStyle(this).getPropertyValue("--primary-text-color");
+    var primaryTextColor = "var(--primary-text-color)";
 
     var icon = this.config.icon ? this.config.icon : "mdi:blinds";
     var iconSize = this.config.iconSize ? this.config.iconSize: "28px";
@@ -59,11 +59,11 @@ class VerticalSliderCoverCard extends LitElement {
     var buttonFontColor = this.config.buttonFontColor ? this.config.buttonFontColor : primaryTextColor;
     
     var background = this.config.background ? this.config.background : "transparent";
-    var sideColor1 = this.config.sideColor1 ? this.config.sideColor1 : '#ffcccc';
+    var sideColor1 = this.config.sideColor1 ? this.config.sideColor1 : "#ffcccc";
     var sideColor2 = this.config.sideColor2 ? this.config.sideColor2 : '#b30000';
     var switchColor = this.config.switchColor ? this.config.switchColor : sideColor2;
-    var closedColor = this.config.closedColor ? this.config.closedColor : 'hsl(0, 0%, 20%)';
-    var openColor = this.config.openColor ? this.config.openColor : 'hsl(0, 0%, 90%, 0.6)';
+    var closedColor = this.config.closedColor ? this.config.closedColor : "hsl(0, 0%, 20%)";
+    var openColor = this.config.openColor ? this.config.openColor : "hsl(0, 0%, 90%, 0.6)";
     var panelType = this.config.panelType;
     var showSidebar = this.config.showSidebar;
     var titleSize = this.config.titleSize ? this.config.titleSize : "40px";
@@ -593,4 +593,4 @@ class VerticalSliderCoverCard extends LitElement {
   
 }
 
-customElements.define('vertical-slider-cover-card-dev', VerticalSliderCoverCard);
+customElements.define('vertical-slider-cover-card', VerticalSliderCoverCard);
