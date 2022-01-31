@@ -35,8 +35,8 @@ class VerticalSliderCoverCard extends LitElement {
 
     var positionWidth = this.config.positionWidth ? this.config.positionWidth : "100px";
     var positionHeight = this.config.positionHeight ? this.config.positionHeight : "300px";
-    var showName = this.config.showName ? true;
-    var showPosition = this.config.showPosition ? true;
+    var showName = this.config.showName ? this.config.showName : true;
+    var showPosition = this.config.showPosition ? this.config.showPosition : true;
     var switchWidth = this.config.switchWidth ? this.config.switchWidth : positionWidth;
     var switchHeight = this.config.switchHeight ? this.config.switchHeight : switchWidth;
     var showSwitch = this.config.showSwitch;
