@@ -2,10 +2,10 @@
  * Author        : duytruong
  * Github        : https://github.com/konnectedvn
  * Description   : 
- * Date          : 31 Jan 2021 08:44:30+07:00
+ * Date          : 01 Feb 2021 08:44:30+07:00
  * Based on      : github.com/DBuit/hass-smart-home-panel-card (Thanks to DBuit!)
  */
-console.info("%c [konnected.vn] Vertical Slider Cover Card  \n%c Version v0.1.4","color: red; font-weight: bold; background: black", "color: white; font-weight: bold; background: dimgray");
+console.info("%c [konnected.vn] Vertical Slider Cover Card  \n%c Version v0.1.5","color: red; font-weight: bold; background: black", "color: white; font-weight: bold; background: dimgray");
 import {
     LitElement,
     html,
@@ -105,10 +105,8 @@ class VerticalSliderCoverCard extends LitElement {
                 return stateObj ? html`
                     <div class="cover" style="--cover-width:${this._coverSize(positionWidth,gapWidth,panelType)};--center-slider:${this._centerSliders(panelType)};">
                       <div class="cover-slider">
-                        <p class="cover-name" style="--cover-fontSize: ${this._coverNameFont(positionWidth,gapWidth)}px;">${ent.name || stateObj.attributes.friendly_name}</p>
                         <p class="cover-name" style="--show-name: ${this._showBlock(showName)};--cover-fontSize: ${this._coverNameFont(positionWidth,gapWidth)}px;">${ent.name || stateObj.attributes.friendly_name}</p>
                         ${stateObj.attributes.supported_features > 6 ? html`
-                            <p class="cover-position" style="--cover-fontSize: ${parseInt(positionWidth.replace(/px/,"")) / 4 - (parseInt(positionWidth.replace(/px/,"")) - 60) / 4}px;">${this._coverPosition(stateObj.state, stateObj.attributes.current_position, stateObj.entity_id)}</p>
                             <p class="cover-position" style="--show-position: ${this._showBlock(showPosition)};--cover-fontSize: ${parseInt(positionWidth.replace(/px/,"")) / 4 - (parseInt(positionWidth.replace(/px/,"")) - 60) / 4}px;">${this._coverPosition(stateObj.state, stateObj.attributes.current_position, stateObj.entity_id)}</p>
                             <div class="range-holder" style="--slider-height: ${positionHeight};--closed-color: ${closedColor};">
                               <input type="range" class="${stateObj.state}" style="--slider-width: ${positionWidth};--slider-height: ${positionHeight};--closed-color: ${closedColor};--open-color: ${openColor};" .value="${stateObj.state === "closed" ? 0 : Math.round(stateObj.attributes.current_position)}" @input=${e => this._sliderChange(e.target.value, stateObj.entity_id)}} @change=${e => this._setPosition(stateObj.entity_id, e.target.value, ent.script)}>
@@ -418,7 +416,6 @@ class VerticalSliderCoverCard extends LitElement {
         }
         
         .cover-name {
-          display: block;
           display: var(--show-name);
           font-weight: 300;
           margin-top: calc(var(--cover-fontSize) / 3);
@@ -427,7 +424,6 @@ class VerticalSliderCoverCard extends LitElement {
           font-size: var(--cover-fontSize);
         }
         .cover-position {
-          display: block;
           display: var(--show-position);
           font-weight: 300;
           margin-top: calc(var(--cover-fontsize) / 2);
