@@ -75,6 +75,8 @@ Normally, this means `attributes.supported_features` is at least 7 or greater.
 | switchHeight                   | string  | **Optional** | Height of Stop button at bottom                        | `switchWidth`          |
 | switchColor                    | string  | **Optional** | Background color of Stop button (~)                    | `sideColor2`           |
 | switchFontColor                | string  | **Optional** | Font color of Stop button at bottom                    | theme                  |
+| showName                       | boolean | **Optional** | Show/hide the name of cover                            | `true`                 |
+| showPosition                   | boolean | **Optional** | Show/hide the position (number) of cover               | `true`                 |
 
 ## STARTING A NEW CARD
 
