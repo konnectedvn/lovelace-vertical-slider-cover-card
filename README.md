@@ -110,9 +110,9 @@ In Lovelace, add new Manual card. Replace new card content with sample configura
 
 In View option, check Panel mode if you want do display card in full width.
 
-#example configuration
+# example configuration
 
-##minimum configuration
+## minimum configuration
 
 ```yaml
 type: 'custom:vertical-slider-cover-card'
@@ -121,7 +121,7 @@ entities:
 - entity: cover.garage_shutter
 ```
 
-##more customized
+## more customized
 
 ```yaml
 type: 'custom:vertical-slider-cover-card'
