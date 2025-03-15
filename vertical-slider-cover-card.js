@@ -10,7 +10,8 @@ import {
     LitElement,
     html,
     css
-} from "https://unpkg.com/lit-element@2.0.1/lit-element.js?module";
+} from "https://cdn.jsdelivr.net/gh/lit/dist@3/core/lit-core.min.js";
+//"https://unpkg.com/lit-element@2.0.1/lit-element.js?module"
 class VerticalSliderCoverCard extends LitElement {
   
   static get properties() {
